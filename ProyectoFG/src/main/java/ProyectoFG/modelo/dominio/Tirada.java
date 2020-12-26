@@ -9,11 +9,13 @@ public class Tirada {
 	private Dado dado;
 	private int numeroVeces;
 	private int resultado;
-	private int bonificador;
+	private Integer bonificador;
+	private int resultadoConBonificador;
 	private List<Integer> tiradas;
 
 	// ER para comprobar el comando para lanzar dado
-	private static final String ER_DADO = "(\\d+d\\d+)";
+	private static final String ER_DADO = "(\\d+d\\d+((\\+|\\-)\\d+)*)";
+	private static final String ER_DIVISION = "\\+|\\-)";
 
 	// Constructores
 
@@ -37,9 +39,41 @@ public class Tirada {
 		} else {
 			String[] cadenas = cadena.split("d");
 			setNumeroVeces(Integer.parseInt(cadenas[0]));
-			setDado(new Dado(Integer.parseInt(cadenas[1])));
-			this.tiradas = new ArrayList<Integer>();
+			//Coger primer numero despues de la d
+			
+			
+			if(cadenas[1].contains("+")||cadenas[1].contains("-")) {
+				//Esto esta mal
+				String[] operadores =cadenas[1].split("\\d+");
+				
+				String[] numeros = cadenas[1].split("\\+|\\-");
+				setDado(new Dado(Integer.parseInt(numeros[0])));
+				calcular(operadores, numeros);
+				
+			} else {
+				//No tiene modificadores
+				setDado(new Dado(Integer.parseInt(cadenas[1])));
+			}
+			
+			
+			
 		}
+	}
+
+	private void calcular(String[] operadores, String[] numeros) {
+		int calculo = 0;
+		//ESTO HAY QUE MIRARLO
+		for (int i = 1; i < numeros.length; i++) {
+			if(operadores[i].equals("-")) {
+				calculo -= Integer.parseInt(numeros[i]);
+			} else if(operadores[i].equals("+")) {
+				calculo += Integer.parseInt(numeros[i]);
+			} else {
+				throw new IllegalArgumentException("Operador no válido");
+			}
+		}
+		setBonificador(calculo);
+		
 	}
 
 	// Getter y setter
@@ -51,11 +85,11 @@ public class Tirada {
 		this.dado = dado;
 	}
 
-	public int getBonificador() {
+	public Integer getBonificador() {
 		return this.bonificador;
 	}
 
-	private void setBonificador(int bonificador) {
+	private void setBonificador(Integer bonificador) {
 		this.bonificador = bonificador;
 	}
 
@@ -78,6 +112,13 @@ public class Tirada {
 	private void setResultado(int resultado) {
 		this.resultado = resultado;
 	}
+	public int getResultadoConBonificador() {
+		return this.resultadoConBonificador;
+	}
+
+	private void setResultadoConBonificador(int resultadoConBonificador) {
+		this.resultadoConBonificador = resultadoConBonificador;
+	}
 
 	public List<Integer> getTiradas() {
 		return this.tiradas;
@@ -96,7 +137,8 @@ public class Tirada {
 			tiradas.add(iteracion);
 			total += iteracion;
 		}
-		setResultado(total + getBonificador());
+		setResultado(total);
+		setResultadoConBonificador(total + getBonificador());
 		setTiradas(tiradas);
 	}
 
@@ -124,7 +166,29 @@ public class Tirada {
 		for (Integer integer : tiradas) {
 			mensajeTiradas += integer + " + ";
 		}
-		return "Tirada [" + mensajeTiradas + getBonificador() + " Resultado = " + getResultado() + "]";
+		if(getBonificador()!=null) {
+			if(getBonificador()>0) {
+				return "Tirada [" + mensajeTiradas + getBonificador() + " Resultado = " + getResultadoConBonificador() + "]";
+			} else if(getBonificador()<0){
+				int index = mensajeTiradas.lastIndexOf("+");
+				mensajeTiradas = mensajeTiradas.substring(0,index-1);
+				mensajeTiradas = mensajeTiradas.concat(" -");
+				String modString = ""+getBonificador();
+				modString = modString.substring(1,modString.length());
+				return "Tirada [" + mensajeTiradas + " "+ modString + " Resultado = " + getResultadoConBonificador() + "]";
+			} else {
+				int index = mensajeTiradas.lastIndexOf("+");
+				mensajeTiradas = mensajeTiradas.substring(0,index-1);
+				return "Tirada [" + mensajeTiradas + " Resultado = " + getResultadoConBonificador() + "]";
+			}
+			
+		} else {
+			int index = mensajeTiradas.lastIndexOf("+");
+			mensajeTiradas = mensajeTiradas.substring(0,index-1);
+			return "Tirada [" + mensajeTiradas + " Resultado = " + getResultadoConBonificador() + "]";
+		}
+		
+		
 	}
 
 }
