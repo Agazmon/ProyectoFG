@@ -1,9 +1,20 @@
 package ProyectoFG.modelo.dominio;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.naming.OperationNotSupportedException;
+
+import ProyectoFG.modelo.dao.BibliotecaHechizos;
 import ProyectoFG.modelo.dao.Caracteristicas;
+import ProyectoFG.modelo.dao.EspaciosConjuro;
 import ProyectoFG.modelo.dao.Monedas;
 import ProyectoFG.modelo.dominio.armadura.Armadura;
 import ProyectoFG.modelo.dominio.armadura.TipoArmadura;
+import ProyectoFG.modelo.dominio.hechizo.EspacioConjuro;
+import ProyectoFG.modelo.dominio.hechizo.Hechizo;
+import ProyectoFG.modelo.dominio.hechizo.NivelHechizo;
 
 public class Personaje {
 	int modificadorCompetencia;
@@ -11,12 +22,26 @@ public class Personaje {
 	Monedas monedero;
 	Armadura armadura;
 	Armadura escudo;
+	EspaciosConjuro espaciosPersonaje;
+	List<Hechizo> hechizosDisponibles;
+	Competencias competencias;
+	
+
 	int velocidad;
 
 	public Personaje(Armadura armadura, Armadura escudo) {
 		this.modificadorCompetencia = 4;
 		this.caracteristicasPersonaje = new Caracteristicas(18, 12, 16, 8, 14, 10);
 		this.monedero = new Monedas();
+		this.competencias = new Competencias();
+		try {
+			this.hechizosDisponibles = new BibliotecaHechizos().getListaHechizos();
+		} catch (OperationNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.espaciosPersonaje = new EspaciosConjuro(new ArrayList<EspacioConjuro>(Arrays.asList(new EspacioConjuro(NivelHechizo.NIVEL_1,1,1), new EspacioConjuro(NivelHechizo.NIVEL_2,1,1))));
+		
 		setArmadura(armadura);
 		setEscudo(escudo);
 
@@ -61,9 +86,35 @@ public class Personaje {
 			return getArmadura().getCAFinal(this) + getEscudo().getCAFinal(this);
 		}
 	}
+	
+	public EspaciosConjuro getEspaciosPersonaje() {
+		return espaciosPersonaje;
+	}
+
+	public void setEspaciosPersonaje(EspaciosConjuro espaciosPersonaje) {
+		this.espaciosPersonaje = espaciosPersonaje;
+	}
+	
+
+	public List<Hechizo> getHechizosDisponibles() {
+		return hechizosDisponibles;
+	}
+
+	public void setHechizosDisponibles(List<Hechizo> hechizosDisponibles) {
+		this.hechizosDisponibles = hechizosDisponibles;
+	}
 
 	public int getModificadorCompetencia() {
 		return this.modificadorCompetencia;
+	}
+	
+
+	public Competencias getCompetencias() {
+		return competencias;
+	}
+
+	public void setCompetencias(Competencias competencias) {
+		this.competencias = competencias;
 	}
 
 	public Caracteristicas getCaracteristicas() {

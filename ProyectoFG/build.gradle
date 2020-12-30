@@ -26,4 +26,12 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+    
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
+    
+}
+task run (type: JavaExec){
+    description = "get started run"
+    main = 'MainApp'
+    classpath = sourceSets.main.runtimeClasspath
 }

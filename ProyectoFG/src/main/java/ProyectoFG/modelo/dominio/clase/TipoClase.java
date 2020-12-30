@@ -12,7 +12,16 @@ import ProyectoFG.modelo.dominio.salvacion.Salvacion;
 public enum TipoClase {
 	BARBARO("Barbaro", null, Atributo.FUERZA),
 	BARDO("Bardo",null,Atributo.CARISMA),
-	BRUJO("Brujo",null,Atributo.CARISMA);
+	BRUJO("Brujo",null,Atributo.CARISMA),
+	CLERIGO("Clérigo",null,Atributo.SABIDURIA),
+	DRUIDA("Druida",null,Atributo.SABIDURIA),
+	EXPLORADOR("Explorador",null,Atributo.DESTREZA),
+	GUERRERO("Guerrero",null,Atributo.FUERZA),
+	HECHICERO("Hechicero",null,Atributo.CARISMA),
+	MAGO("Mago",null,Atributo.INTELIGENCIA),
+	MONJE("Monje",null,Atributo.DESTREZA),
+	PALADIN("Paladón",null,Atributo.FUERZA),
+	PICARO("Pícaro",null,Atributo.DESTREZA);
 	
 	String nombreClase;
 	TipoClase clasePadre;

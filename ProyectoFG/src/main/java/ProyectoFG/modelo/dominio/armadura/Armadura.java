@@ -18,7 +18,6 @@ public class Armadura {
 	private int pesoEnLb;
 
 	
-
 	public Armadura(TipoArmadura tipo, String nombre, Moneda precioDeCompra, int claseArmaduraBase, int minFuerza,
 			boolean desventajaSigilo, int pesoEnLb) {
 		setTipoArmadura(tipo);
