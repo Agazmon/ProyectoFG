@@ -1,4 +1,4 @@
-package ProyectoFG.modelo.dao;
+package ProyectoFG.modelo.dao.bibliotecas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import ProyectoFG.modelo.dominio.armadura.TipoArmadura;
 import ProyectoFG.modelo.dominio.moneda.Moneda;
 import ProyectoFG.modelo.dominio.moneda.TipoMoneda;
 
-public class Armaduras {
+public class BibliotecaArmaduras {
 	List<Armadura> armadurasDisponibles;
-	public Armaduras() {
+	public BibliotecaArmaduras() {
 		List<Armadura> listaArmadurasDisponibles = new ArrayList<Armadura>();
 		listaArmadurasDisponibles.add(new Armadura(TipoArmadura.ARMADURA_LIGERA, "Acolchada",new Moneda(TipoMoneda.MONEDA_ORO,5),11,0,true,8));
 		listaArmadurasDisponibles.add(new Armadura(TipoArmadura.ARMADURA_LIGERA, "Cuero",new Moneda(TipoMoneda.MONEDA_ORO,10),11,0,false,10));
@@ -27,10 +27,10 @@ public class Armaduras {
 		listaArmadurasDisponibles.add(new Armadura(TipoArmadura.ESCUDOS,"Escudo", new Moneda(TipoMoneda.MONEDA_ORO,10),0,0,false,6));
 		setArmadurasDisponibles(listaArmadurasDisponibles);
 	}
-	public Armaduras(Armaduras armaduras) {
+	public BibliotecaArmaduras(BibliotecaArmaduras armaduras) {
 		setArmadurasDisponibles(armaduras.getArmadurasDisponibles());
 	}
-	public Armaduras(List<Armadura> listaArmaduras) {
+	public BibliotecaArmaduras(List<Armadura> listaArmaduras) {
 		setArmadurasDisponibles(listaArmaduras);
 	
 	}

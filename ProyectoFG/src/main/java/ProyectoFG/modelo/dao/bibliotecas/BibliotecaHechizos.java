@@ -1,4 +1,4 @@
-package ProyectoFG.modelo.dao;
+package ProyectoFG.modelo.dao.bibliotecas;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -105,12 +105,20 @@ public class Caracteristica {
 	}
 
 	// Método para aumentar o disminuir la característica
-	public void modificarCaracteristica(int modificacion) {
+	public void aumentarCaracteristica(int modificacion) {
 		if (getPuntuacion() + modificacion > PUNTUACION_MAXIMA || getPuntuacion() + modificacion < PUNTUACION_MINIMA) {
 			throw new IllegalArgumentException(
 					"La modificación a la característica se sale de los límites establecidos");
 		} else {
 			setPuntuacion(getPuntuacion() + modificacion);
+		}
+	}
+	public void reducirCaracteristica(int modificacion) {
+		if (getPuntuacion() - modificacion > PUNTUACION_MAXIMA || getPuntuacion() - modificacion < PUNTUACION_MINIMA) {
+			throw new IllegalArgumentException(
+					"La modificación a la característica se sale de los límites establecidos");
+		} else {
+			setPuntuacion(getPuntuacion() - modificacion);
 		}
 	}
 

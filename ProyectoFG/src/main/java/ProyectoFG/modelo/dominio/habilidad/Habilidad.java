@@ -2,9 +2,9 @@ package ProyectoFG.modelo.dominio.habilidad;
 
 import java.util.Objects;
 
-import ProyectoFG.modelo.dominio.Dado;
 import ProyectoFG.modelo.dominio.Personaje;
-import ProyectoFG.modelo.dominio.Tirada;
+import ProyectoFG.modelo.dominio.tirada.Dado;
+import ProyectoFG.modelo.dominio.tirada.Tirada;
 
 public class Habilidad {
 

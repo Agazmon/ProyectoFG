@@ -1,4 +1,4 @@
-package ProyectoFG.modelo.dominio;
+package ProyectoFG.modelo.dominio.tirada;
 
 import java.util.Random;
 
@@ -17,8 +17,8 @@ public class Dado {
 	}
 
 	private void setNumeroCaras(int numeroCaras) {
-		if (numeroCaras <= 1) {
-			throw new IllegalArgumentException("El número mínimo de caras para lanzar un dado es de 2.");
+		if (numeroCaras < 1) {
+			throw new IllegalArgumentException("El número mínimo de caras para lanzar un dado es de 1.");
 		} else if (numeroCaras >= 101) {
 			throw new IllegalArgumentException("El número máximo de caras para lanzar un dado es de 100.");
 		} else {

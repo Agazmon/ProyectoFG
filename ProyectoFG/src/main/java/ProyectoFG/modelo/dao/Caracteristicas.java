@@ -67,7 +67,7 @@ public class Caracteristicas {
 			if (caracteristicaEncontrada == null) {
 				throw new IllegalArgumentException("No se puede modificar una característica que no existe");
 			} else {
-				caracteristicaEncontrada.modificarCaracteristica(valorAumento);
+				caracteristicaEncontrada.aumentarCaracteristica(valorAumento);
 			}
 
 		}
@@ -81,7 +81,7 @@ public class Caracteristicas {
 			if (caracteristicaEncontrada == null) {
 				throw new IllegalArgumentException("No se puede modificar una característica que no existe");
 			} else {
-				caracteristicaEncontrada.modificarCaracteristica(valorAumento);
+				caracteristicaEncontrada.aumentarCaracteristica(valorAumento);
 			}
 
 		}

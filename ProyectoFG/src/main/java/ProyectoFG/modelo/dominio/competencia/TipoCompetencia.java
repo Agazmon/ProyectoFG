@@ -6,7 +6,9 @@ public enum TipoCompetencia {
 	ARMAS_MARCIALES("Armas marciales"), ESPADAS_CORTAS("Espadas cortas"), ESPADAS_LARGAS("Espadas largas"),
 	ESTOQUES("Estoques"), BASTONES("Bastones"), CIMITARRAS("Cimitarras"), DAGAS("Dagas"), DARDOS("Dardos"),
 	GARROTES("Garrotes"), HOCES("Hoces"), HONDAS("Hondas"), JABALINAS("Jabalinas"), LANZAS("Lanzas"), MAZAS("Mazas"),
-	BALLESTA_LIGERA("Ballesta Ligera"), BALLESTAS_DE_MANO("Ballestas de mano");
+	BALLESTA_LIGERA("Ballesta Ligera"), BALLESTAS_DE_MANO("Ballestas de mano"),BALLESTA_PESADA("Ballestas pesadas"), HACHAS("Hachas"),
+	MARTILLOS("Martillos"), ARCOS("Arcos"), ARMAS_DE_ASTA("Armas de asta"), ESPADONES("Espadones"), LATIGOS("Látigos"),
+	PICOS("Picos"), TRIDENTES("Tridentes"), REDES("Redes");
 
 	private String competencia;
 

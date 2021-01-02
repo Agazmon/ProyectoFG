@@ -43,5 +43,25 @@ public class Contadores {
 			}
 		}
 	}
+	public Contador buscar(Contador contadorBuscar) {
+		if(contadorBuscar==null) {
+			throw new IllegalArgumentException("No se puede buscar un contador nulo.");
+		} else {
+			if(!getListaContadores().contains(new Contador(contadorBuscar))) {
+				return null;
+			} else {
+				return new Contador(getListaContadores().get(getListaContadores().indexOf(contadorBuscar)));
+			}
+		}
+	}
+	public void anadir(Contador contadorInsertar) {
+		if(contadorInsertar==null) {
+			throw new IllegalArgumentException("No se puede añadir un contador nulo.");
+		} else if(buscar(contadorInsertar)!=null) {
+			throw new IllegalArgumentException("El contador ya existe por lo que no se puede añadir otro igual.");
+		} else {
+			this.listaContadores.add(new Contador(contadorInsertar));
+		}
+	}
 
 }

@@ -6,15 +6,21 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import ProyectoFG.modelo.dao.BibliotecaHechizos;
 import ProyectoFG.modelo.dao.Caracteristicas;
+import ProyectoFG.modelo.dao.Contadores;
+import ProyectoFG.modelo.dao.Dotes;
 import ProyectoFG.modelo.dao.EspaciosConjuro;
 import ProyectoFG.modelo.dao.Monedas;
+import ProyectoFG.modelo.dao.ObjetosInventario;
+import ProyectoFG.modelo.dao.bibliotecas.BibliotecaHechizos;
+import ProyectoFG.modelo.dominio.arma.Arma;
 import ProyectoFG.modelo.dominio.armadura.Armadura;
 import ProyectoFG.modelo.dominio.armadura.TipoArmadura;
 import ProyectoFG.modelo.dominio.hechizo.EspacioConjuro;
 import ProyectoFG.modelo.dominio.hechizo.Hechizo;
 import ProyectoFG.modelo.dominio.hechizo.NivelHechizo;
+import ProyectoFG.modelo.dominio.raza.Raza;
+import ProyectoFG.modelo.dominio.raza.TamanoRaza;
 
 public class Personaje {
 	int modificadorCompetencia;
@@ -24,10 +30,17 @@ public class Personaje {
 	Armadura escudo;
 	EspaciosConjuro espaciosPersonaje;
 	List<Hechizo> hechizosDisponibles;
+	Contadores contadores;
 	Competencias competencias;
+	Dotes dotes;
+	Arma armaIzquierda;
+	Arma armaDerecha;
+	ObjetosInventario inventarioPersonaje;
+	Raza razaPersonaje;
 	
 
 	int velocidad;
+	int iniciativa;
 
 	public Personaje(Armadura armadura, Armadura escudo) {
 		this.modificadorCompetencia = 4;
@@ -41,9 +54,11 @@ public class Personaje {
 			e.printStackTrace();
 		}
 		this.espaciosPersonaje = new EspaciosConjuro(new ArrayList<EspacioConjuro>(Arrays.asList(new EspacioConjuro(NivelHechizo.NIVEL_1,1,1), new EspacioConjuro(NivelHechizo.NIVEL_2,1,1))));
-		
+		setIniciativa(getCaracteristicas().buscar(Atributo.DESTREZA).getModificador());
 		setArmadura(armadura);
 		setEscudo(escudo);
+		this.inventarioPersonaje = new ObjetosInventario();
+		this.razaPersonaje = new Raza("Humano", TamanoRaza.PEQUENA);
 
 	}
 
@@ -116,6 +131,39 @@ public class Personaje {
 	public void setCompetencias(Competencias competencias) {
 		this.competencias = competencias;
 	}
+	
+
+	public Caracteristicas getCaracteristicasPersonaje() {
+		return caracteristicasPersonaje;
+	}
+
+	public void setCaracteristicasPersonaje(Caracteristicas caracteristicasPersonaje) {
+		this.caracteristicasPersonaje = caracteristicasPersonaje;
+	}
+
+	public Contadores getContadores() {
+		return contadores;
+	}
+
+	public void setContadores(Contadores contadores) {
+		this.contadores = contadores;
+	}
+
+	public int getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
+	}
+
+	public void setModificadorCompetencia(int modificadorCompetencia) {
+		this.modificadorCompetencia = modificadorCompetencia;
+	}
+
+	public void setMonedero(Monedas monedero) {
+		this.monedero = monedero;
+	}
 
 	public Caracteristicas getCaracteristicas() {
 		return this.caracteristicasPersonaje;
@@ -124,5 +172,58 @@ public class Personaje {
 	public Monedas getMonedero() {
 		return this.monedero;
 	}
+
+	public Dotes getDotes() {
+		return dotes;
+	}
+
+	public void setDotes(Dotes dotes) {
+		this.dotes = dotes;
+	}
+
+	public int getIniciativa() {
+		return iniciativa;
+	}
+
+	public void setIniciativa(int iniciativa) {
+		this.iniciativa = iniciativa;
+	}
+
+	public ObjetosInventario getInventarioPersonaje() {
+		return inventarioPersonaje;
+	}
+
+	public void setInventarioPersonaje(ObjetosInventario inventarioPersonaje) {
+		this.inventarioPersonaje = inventarioPersonaje;
+	}
+
+	public Raza getRazaPersonaje() {
+		return razaPersonaje;
+	}
+
+	public void setRazaPersonaje(Raza razaPersonaje) {
+		this.razaPersonaje = razaPersonaje;
+	}
+
+	public Arma getArmaIzquierda() {
+		return armaIzquierda;
+	}
+
+	public void setArmaIzquierda(Arma armaIzquierda) {
+		this.armaIzquierda = armaIzquierda;
+	}
+
+	public Arma getArmaDerecha() {
+		return armaDerecha;
+	}
+
+	public void setArmaDerecha(Arma armaDerecha) {
+		this.armaDerecha = armaDerecha;
+	}
+	
+	
+	
+	
+	
 
 }

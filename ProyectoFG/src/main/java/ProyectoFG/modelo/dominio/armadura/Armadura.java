@@ -132,6 +132,12 @@ public class Armadura {
 		}
 
 	}
+	public void equipar(Personaje pj) {
+		pj.setArmadura(this);
+	}
+	public void desequipar(Personaje pj) {
+		pj.setArmadura(null);
+	}
 	
 
 	@Override

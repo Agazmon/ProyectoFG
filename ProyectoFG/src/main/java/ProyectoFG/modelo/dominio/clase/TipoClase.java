@@ -3,11 +3,11 @@ package ProyectoFG.modelo.dominio.clase;
 import java.util.List;
 
 import ProyectoFG.modelo.dominio.Atributo;
-import ProyectoFG.modelo.dominio.Dado;
 import ProyectoFG.modelo.dominio.arma.TipoArma;
 import ProyectoFG.modelo.dominio.armadura.TipoArmadura;
 
 import ProyectoFG.modelo.dominio.salvacion.Salvacion;
+import ProyectoFG.modelo.dominio.tirada.Dado;
 
 public enum TipoClase {
 	BARBARO("Barbaro", null, Atributo.FUERZA),
