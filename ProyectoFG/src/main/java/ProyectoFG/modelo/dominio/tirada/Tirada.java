@@ -90,6 +90,13 @@ public class Tirada {
 
 		}
 	}
+	public Tirada(Tirada tirada) {
+		setDado(tirada.getDado());
+		setNumeroVeces(tirada.getNumeroVeces());
+		setBonificador(tirada.getBonificador());
+		setResultadosConseguidos(tirada.getResultadosConseguidos());
+		setTipoTirada(tirada.getTipoTirada());
+	}
 
 	private void calcular(String[] operadores, String[] numeros) {
 		int calculo = 0;

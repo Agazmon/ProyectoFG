@@ -79,26 +79,17 @@ public class ArmaDistancia extends Arma {
 
 	@Override
 	public Tirada atacar(Personaje pj, TipoTirada tirada) {
-		pj.getInventarioPersonaje().getTipoMunicion(getMunicionUsada()).consumirUnidad();
-		//Hay que hacer el sistema de recarga
-		if (pj.getCompetencias().buscar(getCompetenciaEspecifica()) == null
-				&& pj.getCompetencias().buscar(getCompetenciaGeneral()) == null) {
-			return new Tirada(new Dado(20), 1, pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
-		} else {
-			return new Tirada(getDadoDano().getDado(), getDadoDano().getNumeroVeces(),
-					pj.getModificadorCompetencia() + pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
+		if(getListaPropiedadesDelArma().contains(PropiedadesArma.MUNICION)) {
+			pj.getInventarioPersonaje().getTipoMunicion(this.getMunicionUsada()).consumirUnidad();
 		}
-
-	}
-	@Override
-	public Tirada danoCausado(Personaje pj) {
-		if (pj.getCompetencias().buscar(getCompetenciaEspecifica()) == null
-				&& pj.getCompetencias().buscar(getCompetenciaGeneral()) == null) {
-			return new Tirada(getDadoDano().getDado(), getDadoDano().getNumeroVeces(), pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
-		} else {
-			return new Tirada(getDadoDano().getDado(), getDadoDano().getNumeroVeces(),
-					pj.getModificadorCompetencia() + pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
+		if(getListaPropiedadesDelArma().contains(PropiedadesArma.RECARGA)) {
+			if(!isCargada()) {
+				// Hay que en algun punto asignarla como descargada y asegurarse cuando se implemente la economía de turnos que el personaje no puede disparar 2 veces en el mismo
+				throw new IllegalArgumentException("Primero es necesario recargar el arma.");
+			}
 		}
+		
+		return new Tirada(super.atacar(pj, tirada));
 	}
 
 }

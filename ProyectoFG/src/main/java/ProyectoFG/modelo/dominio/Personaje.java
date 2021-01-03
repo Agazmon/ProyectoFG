@@ -33,8 +33,8 @@ public class Personaje {
 	Contadores contadores;
 	Competencias competencias;
 	Dotes dotes;
-	Arma armaIzquierda;
-	Arma armaDerecha;
+	Arma manoSecundaria;
+	Arma manoPrincipal;
 	ObjetosInventario inventarioPersonaje;
 	Raza razaPersonaje;
 	
@@ -43,8 +43,9 @@ public class Personaje {
 	int iniciativa;
 
 	public Personaje(Armadura armadura, Armadura escudo) {
-		this.modificadorCompetencia = 4;
-		this.caracteristicasPersonaje = new Caracteristicas(18, 12, 16, 8, 14, 10);
+		this.modificadorCompetencia = 1;
+		this.caracteristicasPersonaje = new Caracteristicas(12, 12, 10, 10, 10, 10);
+//		this.caracteristicasPersonaje = new Caracteristicas(18, 12, 16, 8, 14, 10);
 		this.monedero = new Monedas();
 		this.competencias = new Competencias();
 		try {
@@ -205,20 +206,20 @@ public class Personaje {
 		this.razaPersonaje = razaPersonaje;
 	}
 
-	public Arma getArmaIzquierda() {
-		return armaIzquierda;
+	public Arma getManoSecundaria() {
+		return manoSecundaria;
 	}
 
-	public void setArmaIzquierda(Arma armaIzquierda) {
-		this.armaIzquierda = armaIzquierda;
+	public void setManoSecundaria(Arma manoSecundaria) {
+		this.manoSecundaria = manoSecundaria;
 	}
 
-	public Arma getArmaDerecha() {
-		return armaDerecha;
+	public Arma getManoPrincipal() {
+		return manoPrincipal;
 	}
 
-	public void setArmaDerecha(Arma armaDerecha) {
-		this.armaDerecha = armaDerecha;
+	public void setManoPrincipal(Arma manoPrincipal) {
+		this.manoPrincipal = manoPrincipal;
 	}
 	
 	

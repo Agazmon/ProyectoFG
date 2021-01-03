@@ -6,6 +6,7 @@ import ProyectoFG.modelo.dominio.Atributo;
 import ProyectoFG.modelo.dominio.Personaje;
 import ProyectoFG.modelo.dominio.TipoDano;
 import ProyectoFG.modelo.dominio.competencia.TipoCompetencia;
+import ProyectoFG.modelo.dominio.contador.Contador;
 import ProyectoFG.modelo.dominio.moneda.Moneda;
 import ProyectoFG.modelo.dominio.tirada.Dado;
 import ProyectoFG.modelo.dominio.tirada.TipoTirada;
@@ -50,50 +51,35 @@ public class ArmaArrojadiza extends Arma {
 	private void setAlcanceMaximo(int alcanceMaximo) {
 		this.alcanceMaximo = alcanceMaximo;
 	}
-
+	
 	@Override
-	public Tirada atacar(Personaje pj, TipoTirada tipo) {
-		if (super.getListaPropiedadesDelArma().contains(PropiedadesArma.RED)) {
-			throw new IllegalArgumentException("No se puede atacar con una red, solo se puede lanzar.");
+	public Tirada atacar(Personaje pj, TipoTirada tipoTirada) {
+		if(this.getCantidad()==0) {
+			throw new IllegalArgumentException("No quedan unidades con las que atacar");
 		} else {
-			if (pj.getCompetencias().buscar(getCompetenciaEspecifica()) == null
-					&& pj.getCompetencias().buscar(getCompetenciaGeneral()) == null) {
-				return new Tirada(new Dado(20), 1, pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
-			} else {
-				return new Tirada(new Dado(20), 1, pj.getModificadorCompetencia()
-						+ pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
+			return new Tirada(super.atacar(pj, tipoTirada));
+		}
+		
+	}
+
+	public Tirada lanzar(Personaje pj, TipoTirada tipoTirada) {
+		if (!super.getListaPropiedadesDelArma().contains(PropiedadesArma.ARROJADIZA)) {
+			throw new IllegalArgumentException("Esta arma no se puede lanzar no tiene la propiedad de arrojadiza.");
+		}
+		if(super.getListaPropiedadesDelArma().contains(PropiedadesArma.VERSATIL)) {
+			if(pj.getManoPrincipal().equals(this)&&pj.getManoSecundaria().equals(this)) {
+				throw new IllegalArgumentException("Para lanzar un arma versatil debe estar equipada en una sola mano.");
 			}
 		}
-
-	}
-
-	public Tirada lanzar(Personaje pj) {
-		this.consumirCantidad(1);
-		if (pj.getCompetencias().buscar(getCompetenciaEspecifica()) == null
-				&& pj.getCompetencias().buscar(getCompetenciaGeneral()) == null) {
-			return new Tirada(new Dado(20), 1, pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
+		
+		if(this.getCantidad()==0) {
+			throw new IllegalArgumentException("No quedan unidades que lanzar.");
 		} else {
-			return new Tirada(new Dado(20), 1,
-					pj.getModificadorCompetencia() + pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
+			this.consumirCantidad(1);
+			return new Tirada(super.atacar(pj, tipoTirada));
 		}
-
+		
 	}
 
-	@Override
-	public Tirada danoCausado(Personaje pj) {
-		if (super.getListaPropiedadesDelArma().contains(PropiedadesArma.RED)) {
-			throw new IllegalArgumentException("Una red no causa daño");
-		} else {
-			if (pj.getCompetencias().buscar(getCompetenciaEspecifica()) == null
-					&& pj.getCompetencias().buscar(getCompetenciaGeneral()) == null) {
-				return new Tirada(getDadoDano().getDado(), getDadoDano().getNumeroVeces(),
-						pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
-			} else {
-				return new Tirada(getDadoDano().getDado(), getDadoDano().getNumeroVeces(),
-						pj.getModificadorCompetencia()
-								+ pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador());
-			}
-		}
 
-	}
 }

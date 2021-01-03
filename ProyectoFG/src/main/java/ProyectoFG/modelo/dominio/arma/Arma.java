@@ -121,33 +121,92 @@ public class Arma extends ObjetoInventario {
 
 	public Tirada atacar(Personaje pj, TipoTirada tirada) {
 		// TODO hacer el ataque
-
-		int bonificadorAtributo = pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador();
-		// Comprobar si es sutil
-		if (getListaPropiedadesDelArma().contains(PropiedadesArma.SUTIL)) {
-			if (bonificadorAtributo < pj.getCaracteristicas().buscar(Atributo.DESTREZA).getModificador()) {
-				bonificadorAtributo = pj.getCaracteristicas().buscar(Atributo.DESTREZA).getModificador();
-			}
-		//Si es a dos manos comprobar que la lleva a dos manos
-		} else if(getListaPropiedadesDelArma().contains(PropiedadesArma.A_DOS_MANOS)) {
-			if(!pj.getArmaIzquierda().equals(pj.getArmaDerecha())){
-				throw new IllegalArgumentException("Se requiere que el personaje tenga equipada el arma a dos manos.");
-			}
-		//Si es pesada comprobar que no es pequeño
-		} else if(getListaPropiedadesDelArma().contains(PropiedadesArma.PESADA)) {
-			if(pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.PEQUENA)||pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.DIMINUTA)) {
-				tirada = TipoTirada.DESVENTAJA;
-			}
-		}
-
-		if ((pj.getCompetencias().buscar(competenciaEspecifica) == null)
-				&& (pj.getCompetencias().buscar(competenciaGeneral) == null))
-
-		{
-			// Tirada sin ninguna competencia
+		// Comprobar si está equipada
+		if (!(pj.getManoPrincipal().equals(this)) && !(pj.getManoSecundaria().equals(this))) {
+			throw new IllegalArgumentException(
+					"El arma no está equipada en la mano del personaje. Equípala primero para poder usarla.");
 		} else {
-			// Tirada con competencia
-			return new Tirada(new Dado(20), 1, bonificadorAtributo);
+			int bonificadorAtributo = pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador();
+			int bonificadorCompetencia = pj.getModificadorCompetencia();
+			Tirada dadoDano = getDadoDano();
+			boolean ligeraOffHand = false;
+			// Comprobar si es sutil
+			if (getListaPropiedadesDelArma().contains(PropiedadesArma.SUTIL)) {
+				if (bonificadorAtributo < pj.getCaracteristicas().buscar(Atributo.DESTREZA).getModificador()) {
+					bonificadorAtributo = pj.getCaracteristicas().buscar(Atributo.DESTREZA).getModificador();
+				}
+				// Si es a dos manos comprobar que la lleva a dos manos
+			}
+			if (getListaPropiedadesDelArma().contains(PropiedadesArma.A_DOS_MANOS)) {
+				if (pj.getManoPrincipal() == null || pj.getManoSecundaria() == null) {
+					throw new IllegalArgumentException(
+							"Se requiere que el personaje tenga equipada el arma a dos manos.");
+				}
+				if (!pj.getManoSecundaria().equals(pj.getManoPrincipal())) {
+					throw new IllegalArgumentException(
+							"Se requiere que el personaje tenga equipada el arma a dos manos.");
+				}
+				// Si es pesada comprobar que no es pequeño
+			}
+			if (getListaPropiedadesDelArma().contains(PropiedadesArma.PESADA)) {
+				if (pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.PEQUENA)
+						|| pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.DIMINUTA)) {
+					if(tirada.equals(TipoTirada.VENTAJA)) tirada = TipoTirada.NEUTRA;
+					else tirada = TipoTirada.DESVENTAJA;
+				}
+			}
+			// Si es una lanza de caballería comprobar la distancia con el objetivo
+			if (getListaPropiedadesDelArma().contains(PropiedadesArma.LANZA_CABALLERIA)) {
+				// No hay forma actualmente de comprobar el objetivo de un ataque es posible que
+				// se implemente en el futuro.
+				// Comprobar que el personaje no esté en montura y si no lo está necesita usar
+				// las dos manos para usarla.
+				// Como no hay sistema de montura por ahora, se necesitan las dos manos siempre
+				// para empuñarla
+				// TODO sistema de montura y comprobar si esta en montura.
+				if (!pj.getManoSecundaria().equals(pj.getManoPrincipal())) {
+					throw new IllegalArgumentException(
+							"Se requiere que el personaje tenga equipada el arma a dos manos.");
+				}
+			}
+			if (getListaPropiedadesDelArma().contains(PropiedadesArma.GRAN_ALCANCE)) {
+				// Comprobar si el objetivo esta a mas de 5 pies del límite por defecto de
+				// cuerpo a cuerpo
+				// Como no hay sistema de apuntado, por ahora no se hace nada.
+
+			}
+			if (getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)) {
+				//
+				if (pj.getManoSecundaria().getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)
+						&& pj.getManoPrincipal().getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)) {
+					if (!pj.getManoSecundaria().equals(pj.getManoPrincipal())) {
+						// comprobar si es el ataque offhandd
+						if (this.equals(pj.getManoPrincipal())) {
+							// El ataque es con la mano principal
+							// TODO si se crea economía de acciones consumir acción normal.
+
+						} else if (this.equals(pj.getManoSecundaria())) {
+							// El ataque es con la mano secundaria
+							// TODO si se crea economía de acciones consumir la acción adicional.
+							ligeraOffHand = true;
+
+						}
+					} else {
+						throw new IllegalArgumentException("Un arma ligera no se puede coger a dos manos");
+					}
+				}
+			}
+
+			// Ataque normal
+			if ((pj.getCompetencias().buscar(competenciaEspecifica) == null)
+					&& (pj.getCompetencias().buscar(competenciaGeneral) == null)) {
+				// no competente
+				return new Tirada(new Dado(20), 1, bonificadorAtributo, tirada);
+			} else {
+				// Competente
+				return new Tirada(new Dado(20), 1, bonificadorAtributo + bonificadorCompetencia, tirada);
+			}
+
 		}
 
 	}
@@ -155,6 +214,8 @@ public class Arma extends ObjetoInventario {
 	public Tirada danoCausado(Personaje pj) {
 		int bonificadorAtributo = pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador();
 		Tirada tiradaDano = getDadoDano();
+		boolean ligeraOffHand = false;
+		int bonificadorCompetencia = pj.getModificadorCompetencia();
 		// Comprobar si es sutil
 		if (getListaPropiedadesDelArma().contains(PropiedadesArma.SUTIL)) {
 			if (bonificadorAtributo < pj.getCaracteristicas().buscar(Atributo.DESTREZA).getModificador()) {
@@ -162,13 +223,44 @@ public class Arma extends ObjetoInventario {
 			}
 			// Comprobar si es versatil
 		} else if (getListaPropiedadesDelArma().contains(PropiedadesArma.VERSATIL)) {
-			if (pj.getArmaIzquierda().equals(pj.getArmaDerecha())) {
-				tiradaDano = new Tirada(new Dado(getDadoDano().getDado().getCaras() + 2), getDadoDano().getNumeroVeces());
-			} 
+			if (pj.getManoSecundaria().equals(pj.getManoPrincipal())) {
+				tiradaDano = new Tirada(new Dado(getDadoDano().getDado().getCaras() + 2),
+						getDadoDano().getNumeroVeces());
+			}
 		}
-		// TODO Todo atacar y poner que si es versatil en las hijas y en esta que coja
-					// el mayor.
-					return new Tirada(getDadoDano().getDado());
+		if (getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)) {
+			//
+			if (pj.getManoSecundaria().getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)
+					&& pj.getManoPrincipal().getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)) {
+				if (!pj.getManoSecundaria().equals(pj.getManoPrincipal())) {
+					// comprobar si es el ataque offhandd
+					if (this.equals(pj.getManoPrincipal())) {
+						// El ataque es con la mano principal
+						// TODO si se crea economía de acciones consumir acción normal.
+
+					}
+					if (pj.getManoSecundaria().equals(this)) {
+						// El ataque es con la mano secundaria
+						// TODO si se crea economía de acciones consumir la acción adicional.
+						ligeraOffHand = true;
+					}
+				} else {
+					throw new IllegalArgumentException("Un arma ligera no se puede coger a dos manos");
+				}
+			}
+		}
+		if (ligeraOffHand) {
+			// Ataque offhand
+			// tirada con el modificador de atributo solo si es negativo
+			if (bonificadorAtributo < 0) {
+				return new Tirada(new Dado(tiradaDano.getDado()), tiradaDano.getNumeroVeces(), bonificadorAtributo);
+			} else {
+				return new Tirada(new Dado(tiradaDano.getDado()), tiradaDano.getNumeroVeces());
+			}
+		} else {
+			return new Tirada(new Dado(getDadoDano().getDado()), getDadoDano().getNumeroVeces(), bonificadorAtributo);
+
+		}
 	}
 
 }

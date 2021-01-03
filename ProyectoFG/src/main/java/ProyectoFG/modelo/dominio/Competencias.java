@@ -53,7 +53,7 @@ public class Competencias {
 		if(competenciaBusqueda==null) {
 			throw new IllegalArgumentException("No se puede buscar una competencia nula.");
 		} else if(!(getListaCompetencias().contains(new Competencia(competenciaBusqueda,false)))){
-			throw new IllegalArgumentException("No se ha encontrado la competencia.");
+			return null;
 		} else {
 			return this.listaCompetencias.get(this.listaCompetencias.indexOf(new Competencia(competenciaBusqueda,false)));
 		}
