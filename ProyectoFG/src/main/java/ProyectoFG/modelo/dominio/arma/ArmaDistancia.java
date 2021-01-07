@@ -6,6 +6,7 @@ import ProyectoFG.modelo.dominio.Atributo;
 import ProyectoFG.modelo.dominio.Personaje;
 import ProyectoFG.modelo.dominio.TipoDano;
 import ProyectoFG.modelo.dominio.competencia.TipoCompetencia;
+import ProyectoFG.modelo.dominio.dote.TipoDote;
 import ProyectoFG.modelo.dominio.moneda.Moneda;
 import ProyectoFG.modelo.dominio.tirada.Dado;
 import ProyectoFG.modelo.dominio.tirada.TipoTirada;
@@ -79,17 +80,36 @@ public class ArmaDistancia extends Arma {
 
 	@Override
 	public Tirada atacar(Personaje pj, TipoTirada tirada) {
-		if(getListaPropiedadesDelArma().contains(PropiedadesArma.MUNICION)) {
+		if (getListaPropiedadesDelArma().contains(PropiedadesArma.MUNICION)) {
 			pj.getInventarioPersonaje().getTipoMunicion(this.getMunicionUsada()).consumirUnidad();
 		}
-		if(getListaPropiedadesDelArma().contains(PropiedadesArma.RECARGA)) {
-			if(!isCargada()) {
-				// Hay que en algun punto asignarla como descargada y asegurarse cuando se implemente la economía de turnos que el personaje no puede disparar 2 veces en el mismo
-				throw new IllegalArgumentException("Primero es necesario recargar el arma.");
+		if (getListaPropiedadesDelArma().contains(PropiedadesArma.RECARGA)) {
+			if (pj.getCompetencias().buscar(getCompetenciaEspecifica()).isCompetente()
+					|| pj.getCompetencias().buscar(getCompetenciaGeneral()).isCompetente()) {
+				if (pj.getDotes().buscar(TipoDote.EXPERTO_EN_BALLESTAS) == null) {
+					if (!isCargada()) {
+						throw new IllegalArgumentException("Primero es necesario recargar el arma.");
+					}
+				} else {
+					return new Tirada(super.atacar(pj, tirada));
+				}
+			} else {
+				if (!isCargada()) {
+					throw new IllegalArgumentException("Primero es necesario recargar el arma.");
+				}
 			}
 		}
-		
+
+		setCargada(false);
 		return new Tirada(super.atacar(pj, tirada));
+	}
+
+	public void recargar() {
+		if (!isCargada()) {
+			setCargada(true);
+		} else {
+			throw new IllegalArgumentException("El arma ya está cargada, no es necesario cargarla");
+		}
 	}
 
 }

@@ -9,7 +9,7 @@ import ProyectoFG.modelo.dominio.moneda.Moneda;
 import ProyectoFG.modelo.dominio.moneda.TipoMoneda;
 
 public class BibliotecaArmaduras {
-	List<Armadura> armadurasDisponibles;
+	private static List<Armadura> armadurasDisponibles;
 	public BibliotecaArmaduras() {
 		List<Armadura> listaArmadurasDisponibles = new ArrayList<Armadura>();
 		listaArmadurasDisponibles.add(new Armadura(TipoArmadura.ARMADURA_LIGERA, "Acolchada",new Moneda(TipoMoneda.MONEDA_ORO,5),11,0,true,8));
@@ -28,21 +28,21 @@ public class BibliotecaArmaduras {
 		setArmadurasDisponibles(listaArmadurasDisponibles);
 	}
 	public BibliotecaArmaduras(BibliotecaArmaduras armaduras) {
-		setArmadurasDisponibles(armaduras.getArmadurasDisponibles());
+		setArmadurasDisponibles(BibliotecaArmaduras.getArmadurasDisponibles());
 	}
 	public BibliotecaArmaduras(List<Armadura> listaArmaduras) {
 		setArmadurasDisponibles(listaArmaduras);
 	
 	}
-	public List<Armadura> getArmadurasDisponibles(){
-		return this.armadurasDisponibles;
+	public static List<Armadura> getArmadurasDisponibles(){
+		return armadurasDisponibles;
 	}
 	private void setArmadurasDisponibles(List<Armadura> listaArmaduras){
-		this.armadurasDisponibles = new ArrayList<>();
-		this.armadurasDisponibles = listaArmaduras;
+		BibliotecaArmaduras.armadurasDisponibles = new ArrayList<>();
+		BibliotecaArmaduras.armadurasDisponibles = listaArmaduras;
 	}
 	
-	public Armadura buscar(String nombre) {
+	public static Armadura buscar(String nombre) {
 		if(nombre == null) {
 			throw new IllegalArgumentException("No se puede buscar una armadura por un nombre nulo.");
 		} else if(nombre.isBlank()) {

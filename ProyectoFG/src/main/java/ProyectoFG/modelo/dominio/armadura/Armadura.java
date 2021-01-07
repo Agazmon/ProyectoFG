@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import ProyectoFG.modelo.dominio.Atributo;
 import ProyectoFG.modelo.dominio.Personaje;
+import ProyectoFG.modelo.dominio.dote.TipoDote;
 import ProyectoFG.modelo.dominio.moneda.Moneda;
 
 public class Armadura {
@@ -17,25 +18,28 @@ public class Armadura {
 	private boolean desventajaSigilo;
 	private int pesoEnLb;
 
-	
 	public Armadura(TipoArmadura tipo, String nombre, Moneda precioDeCompra, int claseArmaduraBase, int minFuerza,
 			boolean desventajaSigilo, int pesoEnLb) {
 		setTipoArmadura(tipo);
 		setNombre(nombre);
 		setPrecioDeCompra(precioDeCompra);
-		setClaseArmaduraBase(claseArmaduraBase);;
+		setClaseArmaduraBase(claseArmaduraBase);
+		;
 		setMinFuerza(minFuerza);
-		setDesventajaSigilo(desventajaSigilo);;
+		setDesventajaSigilo(desventajaSigilo);
+		;
 		setPesoEnLb(pesoEnLb);
 	}
-	
+
 	public Armadura(Armadura armadura) {
 		setTipoArmadura(armadura.getTipoArmadura());
 		setNombre(armadura.getNombre());
 		setPrecioDeCompra(armadura.getPrecioDeCompra());
-		setClaseArmaduraBase(armadura.getClaseArmaduraBase());;
+		setClaseArmaduraBase(armadura.getClaseArmaduraBase());
+		;
 		setMinFuerza(armadura.getMinFuerza());
-		setDesventajaSigilo(armadura.isDesventajaSigilo());;
+		setDesventajaSigilo(armadura.isDesventajaSigilo());
+		;
 		setPesoEnLb(armadura.getPesoEnLb());
 	}
 
@@ -121,10 +125,17 @@ public class Armadura {
 		if (getTipoArmadura().equals(TipoArmadura.ARMADURA_LIGERA)) {
 			return getClaseArmaduraBase() + modDestrezaPJ;
 		} else if (getTipoArmadura().equals(TipoArmadura.ARMADURA_MEDIA)) {
-			if (modDestrezaPJ > 2)
-				return getClaseArmaduraBase() + 2;
-			else
-				return getClaseArmaduraBase() + modDestrezaPJ;
+			if (pj.getDotes().buscar(TipoDote.MAESTRO_EN_ARMADURAS_MEDIAS) != null) {
+				if (modDestrezaPJ > 3)
+					return getClaseArmaduraBase() + 3;
+				else
+					return getClaseArmaduraBase() + modDestrezaPJ;
+			} else {
+				if (modDestrezaPJ > 2)
+					return getClaseArmaduraBase() + 2;
+				else
+					return getClaseArmaduraBase() + modDestrezaPJ;
+			}
 		} else if (getTipoArmadura().equals(TipoArmadura.ARMADURA_PESADA)) {
 			return getClaseArmaduraBase();
 		} else {
@@ -132,13 +143,6 @@ public class Armadura {
 		}
 
 	}
-	public void equipar(Personaje pj) {
-		pj.setArmadura(this);
-	}
-	public void desequipar(Personaje pj) {
-		pj.setArmadura(null);
-	}
-	
 
 	@Override
 	public int hashCode() {
@@ -163,27 +167,28 @@ public class Armadura {
 		case ARMADURA_LIGERA:
 			if (isDesventajaSigilo())
 				return "Armadura [ Nombre:" + getNombre() + " Coste:" + getPrecioDeCompra() + " Calculo CA ="
-					+ getClaseArmaduraBase() + "+Modificador por Des" + " Requisito de fuerza: -" + " Sigilo: Desventaja"  + " Peso: " + getPesoEnLb() + "lb"
-					+ "]";
-			else 
+						+ getClaseArmaduraBase() + "+Modificador por Des" + " Requisito de fuerza: -"
+						+ " Sigilo: Desventaja" + " Peso: " + getPesoEnLb() + "lb" + "]";
+			else
 				return "Armadura [ Nombre:" + getNombre() + " Coste:" + getPrecioDeCompra() + " Calculo CA ="
-				+ getClaseArmaduraBase() + "+Modificador por Des" + " Requisito de fuerza: -" +"  Sigilo: -" + " Peso: " + getPesoEnLb() + "lb"
-				+ "]";
+						+ getClaseArmaduraBase() + "+Modificador por Des" + " Requisito de fuerza: -" + "  Sigilo: -"
+						+ " Peso: " + getPesoEnLb() + "lb" + "]";
 		case ARMADURA_MEDIA:
 			if (isDesventajaSigilo())
 				return "Armadura [ Nombre:" + getNombre() + " Coste:" + getPrecioDeCompra() + " Calculo CA ="
-					+ getClaseArmaduraBase() + "+Modificador por Des(máx 2)" + " Requisito de fuerza: -" + " Sigilo: Desventaja"  + " Peso: " + getPesoEnLb() + "lb"
-					+ "]";
-			else 
+						+ getClaseArmaduraBase() + "+Modificador por Des(máx 2)" + " Requisito de fuerza: -"
+						+ " Sigilo: Desventaja" + " Peso: " + getPesoEnLb() + "lb" + "]";
+			else
 				return "Armadura [ Nombre:" + getNombre() + " Coste:" + getPrecioDeCompra() + " Calculo CA ="
-				+ getClaseArmaduraBase() + "+Modificador por Des (máx 2)" + " Requisito de fuerza: -" +"  Sigilo: -" + " Peso: " + getPesoEnLb() + "lb"
-				+ "]";
+						+ getClaseArmaduraBase() + "+Modificador por Des (máx 2)" + " Requisito de fuerza: -"
+						+ "  Sigilo: -" + " Peso: " + getPesoEnLb() + "lb" + "]";
 		case ARMADURA_PESADA:
 			return "Armadura [ Nombre:" + getNombre() + " Coste:" + getPrecioDeCompra() + " Calculo CA ="
-			+ getClaseArmaduraBase() + "+Modificador por Des(máx 2)" + " Requisito de fuerza:" + getMinFuerza() + " Sigilo: Desventaja"  + " Peso: " + getPesoEnLb() + "lb"
-			+ "]";
+					+ getClaseArmaduraBase() + "+Modificador por Des(máx 2)" + " Requisito de fuerza:" + getMinFuerza()
+					+ " Sigilo: Desventaja" + " Peso: " + getPesoEnLb() + "lb" + "]";
 		case ESCUDOS:
-			return "Armadura [ Nombre:" + getNombre() + " Coste:" + getPrecioDeCompra() + " Calculo CA = CA Actual + 2" + "]";
+			return "Armadura [ Nombre:" + getNombre() + " Coste:" + getPrecioDeCompra() + " Calculo CA = CA Actual + 2"
+					+ "]";
 		default:
 			throw new IllegalArgumentException("Tipo de armadura no reconocido para mostrar.");
 		}

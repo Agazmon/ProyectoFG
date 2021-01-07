@@ -3,7 +3,10 @@ package ProyectoFG.modelo.dominio.habilidad;
 import java.util.Objects;
 
 import ProyectoFG.modelo.dominio.Personaje;
+import ProyectoFG.modelo.dominio.armadura.TipoArmadura;
+import ProyectoFG.modelo.dominio.dote.TipoDote;
 import ProyectoFG.modelo.dominio.tirada.Dado;
+import ProyectoFG.modelo.dominio.tirada.TipoTirada;
 import ProyectoFG.modelo.dominio.tirada.Tirada;
 
 public class Habilidad {
@@ -46,17 +49,36 @@ public class Habilidad {
 	}
 
 	// Funcionalidad
-	public Tirada pruebaDeHabilidad(Personaje personaje) {
+	public Tirada pruebaDeHabilidad(Personaje personaje, TipoTirada tipoTirada) {
 		Tirada tirada;
+		if (tipoTirada != TipoTirada.DESVENTAJA && getHabilidad() == TipoHabilidad.SIGILO)
+			tipoTirada = comprobarSigilo(personaje, tipoTirada);
 		if (isCompetencia()) {
 			tirada = new Tirada(new Dado(20), 1, (personaje.getModificadorCompetencia()
-					+ personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador()));
+					+ personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador()),tipoTirada);
 		} else {
 			tirada = new Tirada(new Dado(20), 1,
-					personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador());
+					personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador(),tipoTirada);
 		}
 		tirada.tirar();
 		return tirada;
+	}
+
+	private TipoTirada comprobarSigilo(Personaje personaje, TipoTirada tipoTirada) {
+		if (personaje.getArmadura() != null) {
+			if (personaje.getArmadura().isDesventajaSigilo()) {
+				if (personaje.getArmadura().getTipoArmadura() == TipoArmadura.ARMADURA_MEDIA) {
+					if (personaje.getDotes().buscar(TipoDote.MAESTRO_EN_ARMADURAS_MEDIAS) == null) {
+						if (tipoTirada == TipoTirada.VENTAJA) {
+							tipoTirada = TipoTirada.NEUTRA;
+						} else {
+							tipoTirada = TipoTirada.DESVENTAJA;
+						}
+					}
+				}
+			}
+		}
+		return tipoTirada;
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import ProyectoFG.modelo.dominio.Atributo;
 import ProyectoFG.modelo.dominio.Personaje;
 import ProyectoFG.modelo.dominio.TipoDano;
 import ProyectoFG.modelo.dominio.competencia.TipoCompetencia;
+import ProyectoFG.modelo.dominio.dote.TipoDote;
 import ProyectoFG.modelo.dominio.moneda.Moneda;
 import ProyectoFG.modelo.dominio.objeto.ObjetoInventario;
 import ProyectoFG.modelo.dominio.raza.TamanoRaza;
@@ -151,8 +152,10 @@ public class Arma extends ObjetoInventario {
 			if (getListaPropiedadesDelArma().contains(PropiedadesArma.PESADA)) {
 				if (pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.PEQUENA)
 						|| pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.DIMINUTA)) {
-					if(tirada.equals(TipoTirada.VENTAJA)) tirada = TipoTirada.NEUTRA;
-					else tirada = TipoTirada.DESVENTAJA;
+					if (tirada.equals(TipoTirada.VENTAJA))
+						tirada = TipoTirada.NEUTRA;
+					else
+						tirada = TipoTirada.DESVENTAJA;
 				}
 			}
 			// Si es una lanza de caballería comprobar la distancia con el objetivo
@@ -195,6 +198,28 @@ public class Arma extends ObjetoInventario {
 						throw new IllegalArgumentException("Un arma ligera no se puede coger a dos manos");
 					}
 				}
+			} else {
+				if (pj.getManoPrincipal() instanceof Arma && pj.getManoSecundaria() instanceof Arma) {
+					// Comprobar si la offhand es ligera
+					if (!pj.getManoSecundaria().getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)) {
+						if (pj.getManoPrincipal().getListaPropiedadesDelArma().contains(PropiedadesArma.VERSATIL)
+								&& pj.getManoSecundaria().equals(this)) {
+							// Si la offhand es versatil se considera que está haciendo un ataque a dos
+							// manos si es la misma
+						} else {
+							// El arma no tiene versatil o no es la misma que la mano secundaria así que no
+							// es a dos manos
+							if (pj.getDotes().buscar(TipoDote.COMBATIENTE_CON_DOS_ARMAS) == null) {
+								// No tiene la dote y no es un ataque a dos manos porque no son la misma arma no
+								// puede atacar.
+								throw new IllegalArgumentException(
+										"No puede atacar no tiene la dote de combatiente con dos armas.");
+							} else {
+								// Tiene la dote puede continuar
+							}
+						}
+					}
+				}
 			}
 
 			// Ataque normal
@@ -223,9 +248,11 @@ public class Arma extends ObjetoInventario {
 			}
 			// Comprobar si es versatil
 		} else if (getListaPropiedadesDelArma().contains(PropiedadesArma.VERSATIL)) {
-			if (pj.getManoSecundaria().equals(pj.getManoPrincipal())) {
-				tiradaDano = new Tirada(new Dado(getDadoDano().getDado().getCaras() + 2),
-						getDadoDano().getNumeroVeces());
+			if (pj.getManoSecundaria() != null) {
+				if (pj.getManoSecundaria().equals(pj.getManoPrincipal())) {
+					tiradaDano = new Tirada(new Dado(getDadoDano().getDado().getCaras() + 2),
+							getDadoDano().getNumeroVeces());
+				}
 			}
 		}
 		if (getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)) {
@@ -258,7 +285,7 @@ public class Arma extends ObjetoInventario {
 				return new Tirada(new Dado(tiradaDano.getDado()), tiradaDano.getNumeroVeces());
 			}
 		} else {
-			return new Tirada(new Dado(getDadoDano().getDado()), getDadoDano().getNumeroVeces(), bonificadorAtributo);
+			return new Tirada(new Dado(tiradaDano.getDado()), tiradaDano.getNumeroVeces(), bonificadorAtributo);
 
 		}
 	}

@@ -17,16 +17,16 @@ import ProyectoFG.modelo.dominio.moneda.Moneda;
 import ProyectoFG.modelo.dominio.moneda.TipoMoneda;
 
 public class BibliotecaHechizos {
-	private List<Hechizo> bibliotecaHechizos;
-	private String patronMonedas = "(\\d+,)*\\d+\\s\\w[gp]";
+	private static List<Hechizo> bibliotecaHechizos;
+	private static final String patronMonedas = "(\\d+,)*\\d+\\s\\w[gp]";
 
 	public BibliotecaHechizos() throws OperationNotSupportedException {
 		this.bibliotecaHechizos = new ArrayList<>();
 		obtenerHechizos(establecerConexion());
 	}
 
-	public List<Hechizo> getListaHechizos() {
-		return this.bibliotecaHechizos;
+	public static List<Hechizo> getListaHechizos() {
+		return bibliotecaHechizos;
 	}
 
 	private void obtenerHechizos(Connection conexion) throws OperationNotSupportedException {
@@ -85,7 +85,7 @@ public class BibliotecaHechizos {
 		}
 	}
 
-	public List<Hechizo> obtenerHechizosClase(TipoClase claseBuscar) {
+	public static List<Hechizo> obtenerHechizosClase(TipoClase claseBuscar) {
 		if (claseBuscar == null) {
 			throw new IllegalArgumentException("No se puede buscar los hechizos de una clase nula.");
 		} else if (getListaHechizos().isEmpty()) {
@@ -119,7 +119,7 @@ public class BibliotecaHechizos {
 		}
 	}
 
-	private int obtenerNumeroClase(TipoClase claseConvertir) {
+	private static int obtenerNumeroClase(TipoClase claseConvertir) {
 		switch (claseConvertir) {
 		case BARBARO:
 			return 1;
@@ -311,7 +311,7 @@ public class BibliotecaHechizos {
 		}
 	}
 
-	private Connection establecerConexion() throws OperationNotSupportedException {
+	private static Connection establecerConexion() throws OperationNotSupportedException {
 		try {
 			Connection conn = DriverManager
 					.getConnection("jdbc:mariadb://localhost:3306/proyecto?user=alex&password=accesodatos");

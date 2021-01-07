@@ -1,11 +1,6 @@
 package ProyectoFG.modelo.dominio.hechizo;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
-
 import ProyectoFG.modelo.dominio.Personaje;
 
 public class Hechizo {
@@ -305,10 +300,12 @@ public class Hechizo {
 			if (getPuedeRitual().equals(NivelHechizo.RITUAL)) {
 				try {
 					EspacioConjuro espacioConjuro = pj.getEspaciosPersonaje().buscar(getNivelBaseHechizo());
-					if(pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida()).isCompetente()) {
+					if (pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida())
+							.isCompetente()) {
 						return true;
 					} else {
-						throw new IllegalArgumentException("El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
+						throw new IllegalArgumentException(
+								"El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
 					}
 					// TODO comprobar lanzar no consumir
 				} catch (IllegalArgumentException e) {
@@ -322,18 +319,22 @@ public class Hechizo {
 				if (!espacioConsumir.equals(NivelHechizo.TRUCO)) {
 					throw new IllegalArgumentException("El hechizo solo puede ser lanzado como truco");
 				} else {
-					if(pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida()).isCompetente()) {
+					if (pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida())
+							.isCompetente()) {
 						return true;
 					} else {
-						throw new IllegalArgumentException("El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
+						throw new IllegalArgumentException(
+								"El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
 					}
 				}
 			} else if (espacioConsumir == NivelHechizo.TRUCO) {
 				if (getNivelBaseHechizo() == NivelHechizo.TRUCO) {
-					if(pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida()).isCompetente()) {
+					if (pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida())
+							.isCompetente()) {
 						return true;
 					} else {
-						throw new IllegalArgumentException("El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
+						throw new IllegalArgumentException(
+								"El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
 					}
 				} else {
 					throw new IllegalArgumentException("El hechizo no se puede lanzar como truco.");
@@ -342,11 +343,13 @@ public class Hechizo {
 				if (espacioConsumir.getValorNivelHechizo() >= getNivelBaseHechizo().getValorNivelHechizo()) {
 					EspacioConjuro espacioPersonaje = pj.getEspaciosPersonaje().buscar(espacioConsumir);
 					if (espacioPersonaje.comprobarEspacios()) {
-						if(pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida()).isCompetente()) {
+						if (pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida())
+								.isCompetente()) {
 							espacioPersonaje.consumirEspacio();
 							return true;
 						} else {
-							throw new IllegalArgumentException("El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
+							throw new IllegalArgumentException(
+									"El personaje no puede lanzar el hechizo, no es competente con la armadura que lleva equipada.");
 						}
 					} else {
 						throw new IllegalArgumentException(

@@ -3,6 +3,8 @@ package ProyectoFG.modelo.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import ProyectoFG.modelo.dominio.accion.TiempoRecuperacion;
+import ProyectoFG.modelo.dominio.clase.TipoClase;
 import ProyectoFG.modelo.dominio.hechizo.EspacioConjuro;
 import ProyectoFG.modelo.dominio.hechizo.NivelHechizo;
 
@@ -51,9 +53,11 @@ public class EspaciosConjuro {
 		if (nivelBuscar == null) {
 			throw new IllegalArgumentException(
 					"No se puede buscar un espacio de conjuro por un nivel de hechizo nulo.");
-		} else if (getEspaciosConjuro().contains(new EspacioConjuro(nivelBuscar, 1, 1))) {
+		} else if (getEspaciosConjuro().contains(
+				new EspacioConjuro(nivelBuscar, 1, 1, TipoClase.BARBARO, 1, TiempoRecuperacion.DESCANSO_CORTO))) {
 			List<EspacioConjuro> espacios = getEspaciosConjuro();
-			EspacioConjuro espacioEncontrado = espacios.get(espacios.indexOf(new EspacioConjuro(nivelBuscar, 1, 1)));
+			EspacioConjuro espacioEncontrado = espacios.get(espacios.indexOf(
+					new EspacioConjuro(nivelBuscar, 1, 1, TipoClase.BARBARO, 1, TiempoRecuperacion.DESCANSO_CORTO)));
 			return espacioEncontrado;
 		} else {
 			throw new IllegalArgumentException("El personaje no tiene espacios de conjuro del nivel pedido.");

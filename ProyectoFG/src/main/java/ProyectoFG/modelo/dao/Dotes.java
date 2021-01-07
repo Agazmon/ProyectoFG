@@ -3,8 +3,10 @@ package ProyectoFG.modelo.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import ProyectoFG.modelo.dominio.dotes.Dote;
-import ProyectoFG.modelo.dominio.dotes.TipoDote;
+import ProyectoFG.modelo.dominio.dote.Dote;
+import ProyectoFG.modelo.dominio.dote.DoteRequisitoAtributo;
+import ProyectoFG.modelo.dominio.dote.DoteRequisitoCompetencia;
+import ProyectoFG.modelo.dominio.dote.TipoDote;
 
 public class Dotes {
 	List<Dote> listaDotes;
@@ -49,7 +51,17 @@ public class Dotes {
 			if (!this.listaDotes.contains(new Dote(doteBuscar))) {
 				return null;
 			} else {
-				return new Dote(this.listaDotes.get(this.listaDotes.indexOf(doteBuscar)));
+				int index = -1;
+				for (Dote dote : listaDotes) {
+					if (dote.getTipoDote() == doteBuscar.getTipoDote()) {
+						index = listaDotes.indexOf(dote);
+					}
+				}
+				if (index != -1) {
+					return new Dote(this.listaDotes.get(index));
+				} else {
+					return null;
+				}
 			}
 
 		}
@@ -58,10 +70,16 @@ public class Dotes {
 	public void anadir(Dote doteAnadir) {
 		if (doteAnadir == null) {
 			throw new IllegalArgumentException("No se puede añadir una dote nula a la lista de dotes del personaje.");
-		} else if (buscar(doteAnadir)==null) {
+		} else if (buscar(doteAnadir) != null) {
 			throw new IllegalArgumentException("El personaje ya tiene la dote añadida.");
 		} else {
-			this.listaDotes.add(new Dote(doteAnadir));
+			if (doteAnadir instanceof Dote) {
+				this.listaDotes.add(new Dote(doteAnadir));
+			} else if (doteAnadir instanceof DoteRequisitoAtributo) {
+				this.listaDotes.add(new DoteRequisitoAtributo((DoteRequisitoAtributo) doteAnadir));
+			} else if (doteAnadir instanceof DoteRequisitoCompetencia) {
+				this.listaDotes.add(new DoteRequisitoCompetencia((DoteRequisitoCompetencia) doteAnadir));
+			}
 		}
 	}
 

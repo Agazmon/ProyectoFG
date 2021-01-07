@@ -5,15 +5,24 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
+import ProyectoFG.modelo.dao.Competencias;
 import ProyectoFG.modelo.dao.bibliotecas.BibliotecaArmaduras;
 import ProyectoFG.modelo.dao.bibliotecas.BibliotecaArmas;
+import ProyectoFG.modelo.dao.bibliotecas.BibliotecaDotes;
 import ProyectoFG.modelo.dao.bibliotecas.BibliotecaHechizos;
+import ProyectoFG.modelo.dominio.Atributo;
 import ProyectoFG.modelo.dominio.Personaje;
 import ProyectoFG.modelo.dominio.arma.Arma;
 import ProyectoFG.modelo.dominio.arma.ArmaArrojadiza;
 import ProyectoFG.modelo.dominio.arma.ArmaDistancia;
 import ProyectoFG.modelo.dominio.arma.PropiedadesArma;
+import ProyectoFG.modelo.dominio.competencia.Competencia;
 import ProyectoFG.modelo.dominio.competencia.TipoCompetencia;
+import ProyectoFG.modelo.dominio.dote.Dote;
+import ProyectoFG.modelo.dominio.dote.DoteRequisitoAtributo;
+import ProyectoFG.modelo.dominio.dote.DoteRequisitoCompetencia;
+import ProyectoFG.modelo.dominio.dote.TipoDote;
+import ProyectoFG.modelo.dominio.habilidad.TipoHabilidad;
 import ProyectoFG.modelo.dominio.hechizo.Hechizo;
 import ProyectoFG.modelo.dominio.objeto.ObjetoInventario;
 import ProyectoFG.modelo.dominio.raza.Raza;
@@ -27,61 +36,26 @@ public class MainApp {
 
 	public static void main(String[] args) throws SQLException {
 		BibliotecaArmaduras armaduras = new BibliotecaArmaduras();
-		Personaje pj = new Personaje(armaduras.buscar("Acolchada"), armaduras.buscar("Escudo"));
+		BibliotecaDotes dotes = new BibliotecaDotes();
 		BibliotecaArmas armas = new BibliotecaArmas();
-		List<Arma> armasLista = armas.getListaArmas();
-		for (Arma arma : armasLista) {
-			armas.comprarArma(arma.getNombre(), pj);
-			if (arma.getListaPropiedadesDelArma().contains(PropiedadesArma.ARROJADIZA)
-					&& arma.getListaPropiedadesDelArma().contains(PropiedadesArma.LIGERA)) {
-				if (pj.getManoPrincipal() == null) {
-					pj.setManoPrincipal(arma);
-				} else if (pj.getManoSecundaria() == null) {
-					pj.setManoSecundaria(arma);
-					System.out.println("Mano principal: " + pj.getManoPrincipal().getNombre());
-					System.out.println("Mano secundaria: " + pj.getManoSecundaria().getNombre());
-				}
-			}
+		Personaje pj = new Personaje(BibliotecaArmaduras.buscar("Cota de escamas"),
+				BibliotecaArmaduras.buscar("Escudo"));
+		Personaje pj2 = new Personaje(BibliotecaArmaduras.buscar("Cota de escamas"),
+				BibliotecaArmaduras.buscar("Escudo"));
+		pj.setManoPrincipal(armas.buscarArma("Ballesta de mano"));
+		pj.setManoSecundaria(armas.buscarArma("Garrote"));
+		System.out.println(pj.getCaracteristicas().buscar(Atributo.FUERZA).toString());
+		Dote dote = BibliotecaDotes.buscar(TipoDote.EXPERTO_EN_BALLESTAS);
+		System.out.println("Maximos"+pj.getPuntosDeGolpeMaximos());
+		System.out.println("Actuales"+pj.getPuntosDeGolpeMaximos());
+		dote.anadirDote(pj);
+		System.out.println("Maximos"+pj.getPuntosDeGolpeMaximos());
+		System.out.println("Actuales"+pj.getPuntosDeGolpeMaximos());
+		List<Dote> listaDotes2 = pj.getDotes().getListaDotes();
+		for (Dote dote2 : listaDotes2) {
+			System.out.println(dote2.toString());
 		}
-		System.out.println("¿Son iguales?");
-		System.out.println(pj.getManoPrincipal().equals(pj.getManoSecundaria()));
-		ArmaArrojadiza armaLanzar = (ArmaArrojadiza) pj.getManoPrincipal();
-		Tirada tiradaManoPrincipal = armaLanzar.lanzar(pj, TipoTirada.NEUTRA);
-		tiradaManoPrincipal.tirar();
-		System.out.println("Los resultados obtenidos son:");
-		List<Resultado> resultadosConseguidos = tiradaManoPrincipal.getResultadosConseguidos();
-		for (Resultado resultado : resultadosConseguidos) {
-			System.out.println("Resultado: " + resultado.getDadosSacados().toString() + " bono: "
-					+ resultado.getBonificadorAnadido() + " Total:" + resultado.getResultado());
-		}
-		System.out.println("Daño obtenido:");
-		Tirada tiradaDanoPrincipal = armaLanzar.danoCausado(pj);
-		tiradaDanoPrincipal.tirar();
-		List<Resultado> danosPrincipal = tiradaDanoPrincipal.getResultadosConseguidos();
-		for (Resultado resultado : danosPrincipal) {
-			System.out.println("Resultado: " + resultado.getDadosSacados().toString() + " bono: "
-					+ resultado.getBonificadorAnadido() + " Total:" + resultado.getResultado());
-		}
-		System.out.println("Mano Principal: " + pj.getManoPrincipal().getNombre());
-		System.out.println("Mano Secundaria: " + pj.getManoSecundaria().getNombre());
-		ArmaArrojadiza armaSecundaria = ((ArmaArrojadiza) pj.getManoSecundaria());
-		Tirada tiradaManoSecundaria = armaSecundaria.lanzar(pj, TipoTirada.NEUTRA);
-		tiradaManoSecundaria.tirar();
-		System.out.println("Los resultados obtenidos con la otra arma son:");
-		List<Resultado> resultadosConseguidosS = tiradaManoSecundaria.getResultadosConseguidos();
-		for (Resultado resultado : resultadosConseguidosS) {
-			System.out.println("Resultado: " + resultado.getDadosSacados().toString() + " bono: "
-					+ resultado.getBonificadorAnadido() + " Total:" + resultado.getResultado());
-		}
-		System.out.println("Daño obtenido:");
-		Tirada tiradaDanoS = armaSecundaria.danoCausado(pj);
-		tiradaDanoS.tirar();
-		List<Resultado> danosS = tiradaDanoS.getResultadosConseguidos();
-		for (Resultado resultado : danosS) {
-			System.out.println("Resultado: " + resultado.getDadosSacados().toString() + " bono: "
-					+ resultado.getBonificadorAnadido() + " Total:" + resultado.getResultado());
-		}
-
+	
 	}
 
 }
