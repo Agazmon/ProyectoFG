@@ -12,7 +12,8 @@ public enum PropiedadesArma {
 	PESADA("Pesada","Las criaturas de tamaño pequeño tienen desventaja en las tiradas de ataque con armas pesadas."),
 	RECARGA("Recarga","Solo se puede realizar un ataque por turno, dado que requiere tiempo para ser recargada."),
 	SUTIL("Sutíl","Podrás elegir realizar la tirada de ataque y daño con el modificador de Fuerza o Destreza (Se cogerá automaticamente el mas alto)."),
-	VERSATIL("Versátil","Estas armas pueden utilizarse con una o dos manos aumentando el daño cuando se emplee a dos manos");
+	VERSATIL("Versátil","Estas armas pueden utilizarse con una o dos manos aumentando el daño cuando se emplee a dos manos"),
+	LADO_OPUESTO("Lado Opuesto","Es necesario tener una Arma de Asta equipada para hacer un ataque con una arma con esta propiedad");
 
 	String nombrePropiedad;
 	String descripcionPropiedad;

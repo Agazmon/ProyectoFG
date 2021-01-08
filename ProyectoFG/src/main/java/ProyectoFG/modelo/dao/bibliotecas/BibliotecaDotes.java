@@ -112,78 +112,178 @@ public class BibliotecaDotes {
 		anadir(new DoteRequisitoCompetencia(TipoDote.VERSADO_EN_UN_ELEMENTO_TRUENO,
 				"Los conjuros que lances ignoran la resistencia al daño de Trueno. Además cuando tires el daño de uno de tus conjuros que inflinja ese tipo de daño, puedes considerar cualquier 1 en los dados de daño como 2. Puedes coger los otros tipo de Versado en un elemento además de este como otra dote.",
 				TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS));
-		
+
 		// Sin requisito
-		anadir(new Dote(TipoDote.ACTOR,"Debido a tu habilidad para la imitación y el arte dramático. Recibes los beneficios siguientes:\n"
-				+ "Tu puntuación de Carisma aumenta en 1, hasta un máximo de 20.\n"
-				+ "Tienes ventaja en las pruebas de Carisma (Engaño) y Carima (Interpretación) que hagas para hacerte pasar por otra persona. Deberás marcar tu la ventaja.\n"
-				+ "Puedes imitar el habla de otra persona o los sonidos que hacen otras criaturas. Debes haber oido hablar a la persona o los sonidos de la criatura durante al menos 1 minuto. Si quien te escucha vence en una prueba de Sabiduría (Perspicacioa) enfrentada a tu prueba de Carisma (Engaño), sabrá que se trata de una imitación."));
-		anadir(new Dote(TipoDote.AFORTUNADO,"Posees una suerte inexplicable, que te sonríe siempre en el momento idóneo.\n"
-				+ "Tienes 3 puntos de suerte. Cuando hagas una tirada de ataque, prueba de característica o tirada de salvación, podrás gastar 1 punto de suerte para tirar 1d20 adicional. Puedes elegir hacer esto después de haber hecho la tirada, pero antes de que se determine el resultado. Podrás escoger cuál de los 2d20 vas a usar en la tirada de ataque, prueba de característica o tirada de salvación. También puedes gastar 1 punto de suerte después de que se haga una tirada de ataque contra tí. Tira 1d20 y decide con que resultado quieres que se realzce el ataque, si con el dado del atacante o el tuyo. Si más de una criatura invierte puntos de suerte en influir en el resultado de la misma tirada, los puntos se cancelan unos con otros y no se tiran dados adicionales. Recuperas todos tus puntos de suerte tras finalizar un descanso largo."));
-		anadir(new Dote(TipoDote.ALERTA,"Siempre estás atento al peligro. Obtienes los beneficios siguientes:\n"
+		anadir(new Dote(TipoDote.ACTOR,
+				"Debido a tu habilidad para la imitación y el arte dramático. Recibes los beneficios siguientes:\n"
+						+ "Tu puntuación de Carisma aumenta en 1, hasta un máximo de 20.\n"
+						+ "Tienes ventaja en las pruebas de Carisma (Engaño) y Carima (Interpretación) que hagas para hacerte pasar por otra persona. Deberás marcar tu la ventaja.\n"
+						+ "Puedes imitar el habla de otra persona o los sonidos que hacen otras criaturas. Debes haber oido hablar a la persona o los sonidos de la criatura durante al menos 1 minuto. Si quien te escucha vence en una prueba de Sabiduría (Perspicacioa) enfrentada a tu prueba de Carisma (Engaño), sabrá que se trata de una imitación."));
+		anadir(new Dote(TipoDote.AFORTUNADO,
+				"Posees una suerte inexplicable, que te sonríe siempre en el momento idóneo.\n"
+						+ "Tienes 3 puntos de suerte. Cuando hagas una tirada de ataque, prueba de característica o tirada de salvación, podrás gastar 1 punto de suerte para tirar 1d20 adicional. Puedes elegir hacer esto después de haber hecho la tirada, pero antes de que se determine el resultado. Podrás escoger cuál de los 2d20 vas a usar en la tirada de ataque, prueba de característica o tirada de salvación. También puedes gastar 1 punto de suerte después de que se haga una tirada de ataque contra tí. Tira 1d20 y decide con que resultado quieres que se realzce el ataque, si con el dado del atacante o el tuyo. Si más de una criatura invierte puntos de suerte en influir en el resultado de la misma tirada, los puntos se cancelan unos con otros y no se tiran dados adicionales. Recuperas todos tus puntos de suerte tras finalizar un descanso largo."));
+		anadir(new Dote(TipoDote.ALERTA, "Siempre estás atento al peligro. Obtienes los beneficios siguientes:\n"
 				+ "Ganas un bonificador de +5 a la iniciativa.\n"
 				+ "Mientras estés consciente no puedes ser sorpendido.\n"
 				+ "Las criaturas que te ataquen sin que puedas verlas no reciben ventaja en sus tiradas de ataque por este motivo.\n"));
-		anadir(new Dote(TipoDote.ATACANTE_A_LA_CARGA,"Cuando utilizas tu acción para Correr, puedes usar una acción adicional para hacer un ataque con arma cuerpo a cuerpo o empujar a una criatura.\n"
-				+ "Si mueves al menos 10 pies en línea recta justo antes de emplear esta acción, podrás elegir entre ganar un bonificador de +5 a la tirada de daño del ataque (si optas por hacer el ataque cuerpo a cuerpo e impactas) o empujar el objetivo hasta 10 pies en dirección contraria a tí (si decides empujar y tienes éxito)"));
-		anadir(new Dote(TipoDote.ATACANTE_SALVAJE,"Una vez por turno, cuando tiras el daño de un ataque con arma cuerpo a cuerpo, puedes repetir los dados de daño del arma y usar el resultado que prefieras."));
-		anadir(new Dote(TipoDote.ATLETA_DESTREZA,"Has seguido un entrenamiento físico muy intenso, que te proporciona los beneficios siguientes:\n"
-				+ "Tu puntuación de Destreza aumenta en 1, hasta un máximo de 20. Si no se puede aumentar la destreza se aumentará automaticamente la fuerza en 1 hasta un máximo de 20, si tampoco se puede, no se aumentará ninguna característica.\n"
-				+ "Solo te cuesta 5 pies de movimiento levantarte cuando estás derribado.\n"
-				+ "No necesitas invertir movimiento adicional para trepar.\n"
-				+ "Puedes hacer un salto con carrerilla, tanto de altura como de longitud, tras haberte movido tan solo 5 pies, en lugar de 10 los 10 pies habituales."));
-		anadir(new Dote(TipoDote.ATLETA_FUERZA,"Has seguido un entrenamiento físico muy intenso, que te proporciona los beneficios siguientes:\n"
-				+ "Tu puntuación de Fuerza aumenta en 1, hasta un máximo de 20. Si no se puede aumentar la Fuerza se aumentará automaticamente la Destreza en 1 hasta un máximo de 20, si tampoco se puede, no se aumentará ninguna característica.\n"
-				+ "Solo te cuesta 5 pies de movimiento levantarte cuando estás derribado.\n"
-				+ "No necesitas invertir movimiento adicional para trepar.\n"
-				+ "Puedes hacer un salto con carrerilla, tanto de altura como de longitud, tras haberte movido tan solo 5 pies, en lugar de 10 los 10 pies habituales."));
-		anadir(new Dote(TipoDote.AZOTE_DE_MAGOS,"Has ensayado técnicas útiles para luchar en cuerpo a cuerpo contra lanzadores de conjuros, recibiendo los beneficios siguientes:\n"
-				+ "Si una criatura que se encuentre a 5 pies o menos de tí lanza un conjuro, puedes utilizar tu reacción para hacer un aataque con arma cuerpo a cuerpo contra ella.\n"
-				+ "Si inflinges daño a una criatura que se está concentrando en un conjuro, esta tendrá desventaja en las tiradas de salvación que haga con el fin de mantener la concentración. La desventaja tendrá que ser seleccionada por la criatura.\n"
-				+ "Tienes ventaja en las tiradas de salvación contra los conjuros lanzados por criaturas que se encuentren a 5 pies o menos de tí. La ventaja tendrás que seleccionarla."));
-		anadir(new Dote(TipoDote.CENTINELA,"Has dominado una serire de técnicas que te permiten aprovecharte de la más mínima brecha en las defensas de tu enemigo, por lo que recibes los siguientes beneficios:\n"
-				+ "Si impactas a una criatura con un ataque de oportunidad, su velocidad desciende a 0 durante el resto del turno.\n"
-				+ "Podrás hacer ataques de oportunidad incluso contra aquellas criaturas que realicen una acción de Destrabarse antes de salir de tu alcance.\n"
-				+ "Cuando una criatura que se encuentre a 5 pies o menos de tí ataque a un objetivo que no seas tú ( y dicho objetivo no posea también esta dote), podrás usar tu reacción para realizar un ataque con arma cuerpo a cuerpo contra la criatura atacante."));
-		anadir(new Dote(TipoDote.COMBATIENTE_CON_DOS_ARMAS,"Has dominado el combate con dos armas, obteniendo los beneficios siguientes:\n"
-				+ "Recibes un +1 a tu CA cuando estás empuñando varias armas cuerpo a cuerpo, una en cada mano.\n"
-				+ "Puedes combatir con dos armas incluso si las armas que estás utilizando no son ligeras.\n"
-				+ "Puedes envainar y desenvainar dos armas a una mano en aquellas circustancias en las que antes solo podías hacerlo con una."));
-		anadir(new Dote(TipoDote.COMBATIENTE_MONTADO,"Eres un enemigo muy peligroso cuando te encuentras sobre una montura. Obtendrás los beneficios siguientes mientras estés sobre una montura y no estes incapacitado"
-				+ "Tienes ventaja en las tiradas de ataque cuerpo a cuerpo contra cualquier criatura que no esté montada y sea de un tamaño inferior al de tu montura.\n"
-				+ "Puedes obligar a que un ataque cuyo objetivo original fuera tu montura te tenga como objetivo a ti en su lugar.\n"
-				+ "Si tu montura es víctima de un efecto que le permita hacer una tirada de salvación de Destreza para recibir solo la mitad del daño no recibirá daño alguno si se tiene éxito en la tirada de salvación y solo la mitad si falla."));
-		anadir(new Dote(TipoDote.DURO,"Tus puntos de golpe máximos aumentan en dos veces tu nivel en el momento en que eliges esta dote. Apartir de ese momento, cada vez que alcances un nuevo nivel tus puntos de golpe máximos aumentarán en 2 más."));
-		anadir(new Dote(TipoDote.EXPERTO_EN_BALLESTAS,"Debido a una practica intesa con la ballesta, has conseguido los beneficios siguientes:\n"
-				+ "Puedes ignorar la propiedad \"Recarga\" de las ballestas con las que eres competente. Será ignorada automaticamente."));
-		anadir(new Dote(TipoDote.EXPLORADOR_DE_MAZMORRAS,"Estás alerta a las trampas ocultas y las pueras secretas habituales en muchas mazmorras, lo que te proporciona los beneficios siguientes:\n"
-				+ "Tienes ventaja en las pruebas de Sabiduría (Percepción) e Inteligencia (Investigación) para detectar la presencia de puertas secretas. tendrás que selecionarla en el caso de que la prueba sea de este tipo.\n"
-				+ "Posees ventaja en las tiradas de salvación para evitar o resistir trampas. Tendrás que seleccionarla antes de tirar la salvación.\n"
-				+ "Tienes resistencia al daño causado por trampas.\n"
-				+ "Al viajar a un ritmo rápido no sufres el penaliszador de -5 habitual a tu puntuación de Sabiduría (Percepción) pasiva."));
-		//TODO ver como programo la dote específica de habilidoso. Posiblemente esto sea cedido a la interfaz.
-		anadir(new Dote(TipoDote.HABILIDOSO,"Ganas competencia en cualquier combinación de tres habilidades o herramientas de tu elección"));
-		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_BARDO,"Aprendes dos trucos y un hechizo de tu elección de la clase de Bardo, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Carisma."));
-		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_BRUJO,"Aprendes dos trucos y un hechizo de tu elección de la clase de Brujo, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Carisma."));
-		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_CLERIGO,"Aprendes dos trucos y un hechizo de tu elección de la clase de Clérigo, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Sabiduría."));
-		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_DRUIDA,"Aprendes dos trucos y un hechizo de tu elección de la clase de Druida, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Sabiduría."));
-		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_HECHICERO,"Aprendes dos trucos y un hechizo de tu elección de la clase de Hechicero, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Carisma."));
-		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_MAGO,"Aprendes dos trucos y un hechizo de tu elección de la clase de Mago, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Inteligencia."));
-		anadir(new Dote(TipoDote.LIGERAMENTE_ACORAZADO_DESTREZA,"Te has entrenado hasta dominar el combate en armaduras ligeras, obteniendo los beneficios siguientes:\n"
-				+ "Tu puntuación de Destreza aumenta en 1 si no puede se aumentará automaticamente la de Fuerza como maximo alcanzando 20 en ambos casos y si tampoco puede no se aumentará ninguna.\n"
-				+ "Ganas competencia en armaduras ligeras."));
-		anadir(new Dote(TipoDote.LIGERAMENTE_ACORAZADO_FUERZA,"Te has entrenado hasta dominar el combate en armaduras ligeras, obteniendo los beneficios siguientes:\n"
-				+ "Tu puntuación de Fuerza aumenta en 1 si no puede se aumentará automaticamente la de Destreza como maximo alcanzando 20 en ambos casos y si tampoco puede no se aumentará ninguna.\n"
-				+ "Ganas competencia en armaduras ligeras."));
-		anadir(new Dote(TipoDote.LINGUISTA,"Has estudiado idiomas y códigos, adquiriendo los beneficios siguientes:\n"
+		anadir(new Dote(TipoDote.ATACANTE_A_LA_CARGA,
+				"Cuando utilizas tu acción para Correr, puedes usar una acción adicional para hacer un ataque con arma cuerpo a cuerpo o empujar a una criatura.\n"
+						+ "Si mueves al menos 10 pies en línea recta justo antes de emplear esta acción, podrás elegir entre ganar un bonificador de +5 a la tirada de daño del ataque (si optas por hacer el ataque cuerpo a cuerpo e impactas) o empujar el objetivo hasta 10 pies en dirección contraria a tí (si decides empujar y tienes éxito)"));
+		anadir(new Dote(TipoDote.ATACANTE_SALVAJE,
+				"Una vez por turno, cuando tiras el daño de un ataque con arma cuerpo a cuerpo, puedes repetir los dados de daño del arma y usar el resultado que prefieras."));
+		anadir(new Dote(TipoDote.ATLETA_DESTREZA,
+				"Has seguido un entrenamiento físico muy intenso, que te proporciona los beneficios siguientes:\n"
+						+ "Tu puntuación de Destreza aumenta en 1, hasta un máximo de 20. Si no se puede aumentar la destreza se aumentará automaticamente la fuerza en 1 hasta un máximo de 20, si tampoco se puede, no se aumentará ninguna característica.\n"
+						+ "Solo te cuesta 5 pies de movimiento levantarte cuando estás derribado.\n"
+						+ "No necesitas invertir movimiento adicional para trepar.\n"
+						+ "Puedes hacer un salto con carrerilla, tanto de altura como de longitud, tras haberte movido tan solo 5 pies, en lugar de 10 los 10 pies habituales."));
+		anadir(new Dote(TipoDote.ATLETA_FUERZA,
+				"Has seguido un entrenamiento físico muy intenso, que te proporciona los beneficios siguientes:\n"
+						+ "Tu puntuación de Fuerza aumenta en 1, hasta un máximo de 20. Si no se puede aumentar la Fuerza se aumentará automaticamente la Destreza en 1 hasta un máximo de 20, si tampoco se puede, no se aumentará ninguna característica.\n"
+						+ "Solo te cuesta 5 pies de movimiento levantarte cuando estás derribado.\n"
+						+ "No necesitas invertir movimiento adicional para trepar.\n"
+						+ "Puedes hacer un salto con carrerilla, tanto de altura como de longitud, tras haberte movido tan solo 5 pies, en lugar de 10 los 10 pies habituales."));
+		anadir(new Dote(TipoDote.AZOTE_DE_MAGOS,
+				"Has ensayado técnicas útiles para luchar en cuerpo a cuerpo contra lanzadores de conjuros, recibiendo los beneficios siguientes:\n"
+						+ "Si una criatura que se encuentre a 5 pies o menos de tí lanza un conjuro, puedes utilizar tu reacción para hacer un aataque con arma cuerpo a cuerpo contra ella.\n"
+						+ "Si inflinges daño a una criatura que se está concentrando en un conjuro, esta tendrá desventaja en las tiradas de salvación que haga con el fin de mantener la concentración. La desventaja tendrá que ser seleccionada por la criatura.\n"
+						+ "Tienes ventaja en las tiradas de salvación contra los conjuros lanzados por criaturas que se encuentren a 5 pies o menos de tí. La ventaja tendrás que seleccionarla."));
+		anadir(new Dote(TipoDote.CENTINELA,
+				"Has dominado una serire de técnicas que te permiten aprovecharte de la más mínima brecha en las defensas de tu enemigo, por lo que recibes los siguientes beneficios:\n"
+						+ "Si impactas a una criatura con un ataque de oportunidad, su velocidad desciende a 0 durante el resto del turno.\n"
+						+ "Podrás hacer ataques de oportunidad incluso contra aquellas criaturas que realicen una acción de Destrabarse antes de salir de tu alcance.\n"
+						+ "Cuando una criatura que se encuentre a 5 pies o menos de tí ataque a un objetivo que no seas tú ( y dicho objetivo no posea también esta dote), podrás usar tu reacción para realizar un ataque con arma cuerpo a cuerpo contra la criatura atacante."));
+		anadir(new Dote(TipoDote.COMBATIENTE_CON_DOS_ARMAS,
+				"Has dominado el combate con dos armas, obteniendo los beneficios siguientes:\n"
+						+ "Recibes un +1 a tu CA cuando estás empuñando varias armas cuerpo a cuerpo, una en cada mano.\n"
+						+ "Puedes combatir con dos armas incluso si las armas que estás utilizando no son ligeras.\n"
+						+ "Puedes envainar y desenvainar dos armas a una mano en aquellas circustancias en las que antes solo podías hacerlo con una."));
+		anadir(new Dote(TipoDote.COMBATIENTE_MONTADO,
+				"Eres un enemigo muy peligroso cuando te encuentras sobre una montura. Obtendrás los beneficios siguientes mientras estés sobre una montura y no estes incapacitado"
+						+ "Tienes ventaja en las tiradas de ataque cuerpo a cuerpo contra cualquier criatura que no esté montada y sea de un tamaño inferior al de tu montura.\n"
+						+ "Puedes obligar a que un ataque cuyo objetivo original fuera tu montura te tenga como objetivo a ti en su lugar.\n"
+						+ "Si tu montura es víctima de un efecto que le permita hacer una tirada de salvación de Destreza para recibir solo la mitad del daño no recibirá daño alguno si se tiene éxito en la tirada de salvación y solo la mitad si falla."));
+		anadir(new Dote(TipoDote.DURO,
+				"Tus puntos de golpe máximos aumentan en dos veces tu nivel en el momento en que eliges esta dote. Apartir de ese momento, cada vez que alcances un nuevo nivel tus puntos de golpe máximos aumentarán en 2 más."));
+		anadir(new Dote(TipoDote.EXPERTO_EN_BALLESTAS,
+				"Debido a una practica intesa con la ballesta, has conseguido los beneficios siguientes:\n"
+						+ "Puedes ignorar la propiedad \"Recarga\" de las ballestas con las que eres competente. Será ignorada automaticamente."));
+		anadir(new Dote(TipoDote.EXPLORADOR_DE_MAZMORRAS,
+				"Estás alerta a las trampas ocultas y las pueras secretas habituales en muchas mazmorras, lo que te proporciona los beneficios siguientes:\n"
+						+ "Tienes ventaja en las pruebas de Sabiduría (Percepción) e Inteligencia (Investigación) para detectar la presencia de puertas secretas. tendrás que selecionarla en el caso de que la prueba sea de este tipo.\n"
+						+ "Posees ventaja en las tiradas de salvación para evitar o resistir trampas. Tendrás que seleccionarla antes de tirar la salvación.\n"
+						+ "Tienes resistencia al daño causado por trampas.\n"
+						+ "Al viajar a un ritmo rápido no sufres el penaliszador de -5 habitual a tu puntuación de Sabiduría (Percepción) pasiva."));
+		// TODO ver como programo la dote específica de habilidoso. Posiblemente esto
+		// sea cedido a la interfaz.
+		anadir(new Dote(TipoDote.HABILIDOSO,
+				"Ganas competencia en cualquier combinación de tres habilidades o herramientas de tu elección"));
+		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_BARDO,
+				"Aprendes dos trucos y un hechizo de tu elección de la clase de Bardo, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Carisma."));
+		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_BRUJO,
+				"Aprendes dos trucos y un hechizo de tu elección de la clase de Brujo, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Carisma."));
+		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_CLERIGO,
+				"Aprendes dos trucos y un hechizo de tu elección de la clase de Clérigo, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Sabiduría."));
+		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_DRUIDA,
+				"Aprendes dos trucos y un hechizo de tu elección de la clase de Druida, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Sabiduría."));
+		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_HECHICERO,
+				"Aprendes dos trucos y un hechizo de tu elección de la clase de Hechicero, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Carisma."));
+		anadir(new Dote(TipoDote.INICIADO_EN_LA_MAGIA_MAGO,
+				"Aprendes dos trucos y un hechizo de tu elección de la clase de Mago, el ultimo podrás usarlo 1 y para poder volver a lanzarlo tendrás que hacer un descanso largo. La aptitud para lanzarlo es de Inteligencia."));
+		anadir(new Dote(TipoDote.LIGERAMENTE_ACORAZADO_DESTREZA,
+				"Te has entrenado hasta dominar el combate en armaduras ligeras, obteniendo los beneficios siguientes:\n"
+						+ "Tu puntuación de Destreza aumenta en 1 si no puede se aumentará automaticamente la de Fuerza como maximo alcanzando 20 en ambos casos y si tampoco puede no se aumentará ninguna.\n"
+						+ "Ganas competencia en armaduras ligeras."));
+		anadir(new Dote(TipoDote.LIGERAMENTE_ACORAZADO_FUERZA,
+				"Te has entrenado hasta dominar el combate en armaduras ligeras, obteniendo los beneficios siguientes:\n"
+						+ "Tu puntuación de Fuerza aumenta en 1 si no puede se aumentará automaticamente la de Destreza como maximo alcanzando 20 en ambos casos y si tampoco puede no se aumentará ninguna.\n"
+						+ "Ganas competencia en armaduras ligeras."));
+		anadir(new Dote(TipoDote.LINGUISTA, "Has estudiado idiomas y códigos, adquiriendo los beneficios siguientes:\n"
 				+ "Tu puntuación de Inteligencia aumenta en 1, hasta un máximo de 20.\n"
 				+ "Eres capaz de inventar códigos para cifrar mensajes escritos. Si agluien quiere descifrarlos tendrá tres opciones: que le enseñes cómo hacerlo, tener exito en una prueba de Inteligencia (CD tu puntuación de Inteligencia + tu modificador de competencia) o recurrir a la magia."));
-		anadir(new Dote(TipoDote.MAESTRO_DE_ARMAS_FUERZA,"Has practicado intensamente con una gran variedad de armas, por lo que disfrutas de los beneficios siguientes:\n"
-				+ "Tu puntuación de Fuerza aumenta en 1, hasta un máximo de 20. Si no puede se aumentará la Destreza en 1, hasta un máximo de 20, si tampoco puede, no se subirá ninguna característica.\n"
-				+ "Ganas competencia con cuatro armas de tu elección. Podrás escoger cualquier arma sencilla o marcial."));
-		anadir(new Dote(TipoDote.MAESTRO_DE_ARMAS_DESTREZA,"Has practicado intensamente con una gran variedad de armas, por lo que disfrutas de los beneficios siguientes:\n"
-				+ "Tu puntuación de Destreza aumenta en 1, hasta un máximo de 20. Si no puede se aumentará la Fuerza en 1, hasta un máximo de 20, si tampoco puede, no se subirá ninguna característica.\n"
-				+ "Ganas competencia con cuatro armas de tu elección. Podrás escoger cualquier arma sencilla o marcial."));
+		anadir(new Dote(TipoDote.MAESTRO_DE_ARMAS_FUERZA,
+				"Has practicado intensamente con una gran variedad de armas, por lo que disfrutas de los beneficios siguientes:\n"
+						+ "Tu puntuación de Fuerza aumenta en 1, hasta un máximo de 20. Si no puede se aumentará la Destreza en 1, hasta un máximo de 20, si tampoco puede, no se subirá ninguna característica.\n"
+						+ "Ganas competencia con cuatro armas de tu elección. Podrás escoger cualquier arma sencilla o marcial."));
+		anadir(new Dote(TipoDote.MAESTRO_DE_ARMAS_DESTREZA,
+				"Has practicado intensamente con una gran variedad de armas, por lo que disfrutas de los beneficios siguientes:\n"
+						+ "Tu puntuación de Destreza aumenta en 1, hasta un máximo de 20. Si no puede se aumentará la Fuerza en 1, hasta un máximo de 20, si tampoco puede, no se subirá ninguna característica.\n"
+						+ "Ganas competencia con cuatro armas de tu elección. Podrás escoger cualquier arma sencilla o marcial."));
+		anadir(new Dote(TipoDote.MAESTRO_EN_ARMAS_DE_ASTA, "Posees los beneficios siguientes:\n"
+				+ "Cuando realizas una acción de Ataqcar y atacas unicamente con: una alabarda, bastón, lanza o guja, puedes emplear tu acción adicional para ejecutar un ataque cuerpo a cuerpo con el lado opuesto del arma. Este ataque utiliza el mismo modificador por característica que el ataque primario, su dado de daño es d4 e inflinge daño contundente. Este ataque será añadido automaticamente a tu lista de ataques.\n"
+				+ "Mientras estas empuñando una alabarda, bastón, lanza guja o pica, puedes hacer un ataque de oportunidad contra aquellas craituras que entren dentro del alcance que entren dentro del alcance que estas armas te dan."));
+		anadir(new Dote(TipoDote.MAESTRO_EN_ARMAS_PESADAS,
+				"Has aprendido a usar el peso de tu arma en tu beneficio, empleando su impulso para reforzar tus golpes. Obtienes los beneficios siguientes.\n"
+						+ "Una vez por turno, cuando con un arma cuerpo a cuerpo hagas un crítico o reduzcas los puntos de golpe de una criatura a 0, podrás utilizar tu acción adicional para realizar un ataque con arma cuerpo a cuerpo.\n"
+						+ "Puedes elegir antes de hacer un ataque cuerpo a cuerpo con un arma pesada con la que seas competente, subrer un penalizador de -5 a la tirada de ataque. Si impactas puedes sumar +10 al daño del ataque."));
+		anadir(new Dote(TipoDote.MAESTRO_EN_ESCUDOS,
+				"No solo usas el escudo para protegerte, sino también para atacar. Mientras estés embrazando un escudo recibirás los beneficios siguientes:\n"
+						+ "Si realizas una acción de Atacar durante tu turno, puedes utilizar una acción adicional para intentar empujar una criatura que se cuentre a 5 pies o menos de ti con tu escudo.\n"
+						+ "Si no estás incapacitado, puedes añadir el bonificador de CA de tu escudo a cualquier tirada de salvación de Destreza que hagas contra cualquier conjuro u otro efecto pernicioso que hagas contra cualquier conjuro u otro efecto pernicioso que solo te tenga como objetivo a tí.\n"
+						+ "Si eres víctima de un efecto que te permite hacer una tirada de salvación de Destreza para recibir solo la mitad del daño, puedes emplear tu reacción para no recibir daño alguno si tienes éxito en la itrada de salvación, interponiendo tu escudo entre el origen del efecto y tu."));
+		anadir(new Dote(TipoDote.MATON_DE_TABERNA_CONSTITUCION,
+				"Estás acostumbrado a pelear de forma brusca y agresiva, empleando como arma cualquier objeto que caiga en tus manos. Por tanto posees los beneficios siguientes:\n"
+						+ "Tu puntuación de Constitución aumenta en 1 hasta un máximo de 20, si no se puede aumentar, en su lugar se aumentará la Fuerza y si tampoco se puede ninguno.\n"
+						+ "Eres competente con armas improvisadas.\n" + "Tus ataques sin armas inflingen 1d4 de daño.\n"
+						+ "Cuando impactas a una criatura con un ataque sin armas o un arma improvisada durante tu turno, puedes utilizar una acción adicional para intentar agarrar el objetivo."));
+		anadir(new Dote(TipoDote.MATON_DE_TABERNA_FUERZA,
+				"Estás acostumbrado a pelear de forma brusca y agresiva, empleando como arma cualquier objeto que caiga en tus manos. Por tanto posees los beneficios siguientes:\n"
+						+ "Tu puntuación de Fuerza aumenta en 1 hasta un máximo de 20, si no se puede aumentar, en su lugar se aumentará la Constitución y si tampoco se puede ninguno.\n"
+						+ "Eres competente con armas improvisadas.\n" + "Tus ataques sin armas inflingen 1d4 de daño.\n"
+						+ "Cuando impactas a una criatura con un ataque sin armas o un arma improvisada durante tu turno, puedes utilizar una acción adicional para intentar agarrar el objetivo."));
+		anadir(new Dote(TipoDote.MENTE_AGUDA,
+				"Posees una mente con una capcidad asombrosa para recibir el paso del tiempo, orientarse y recordar hasta el más mínimo detalle. Obtienes los beneficios siguientes:\n"
+						+ "Tu puntuación de iInteligencia aumenta en 1, hasta un máximo de 20.\n"
+						+ "Siempre distingues dónde está el norte.\n"
+						+ "Siempre sabes cuántas horas faltan para el siguiente amanecer o anochecer.\n"
+						+ "Puedes recordar con exactitud todo lo que hayas visto u oído durante el último mes. Por desgracia esta aplicación no te podrá decir todo lo que te ha pasado en el ultimo mes."));
+		anadir(new Dote(TipoDote.MOVIL, "Eres excepcionalmente ágil y veloz. Posees los beneficios siguientes:\n"
+				+ "Tu velocidad aumenta en 10 pies.\n"
+				+ "Al realizar una acción de Correr, el terreno difícil no te cuesta movimiento adicional durante este turno.\n"
+				+ "Si eralizas un ataque cuerpo a cuerpo contra una criatura (impactes o no), no provocarás ataques de oportunidad de esa criatura durante el resto del turno."));
+		anadir(new Dote(TipoDote.OBSERVADOR_INTELIGENCIA,
+				"Te percatas con facilidad de los detalles de tu entorno, por lo que recibes los beneficios siguientes:\n"
+						+ "Tu puntuación de Inteligencia aumenta en 1 hasta un máximo de 20. Si no puede ser incrementada, aumentará la Sabiduría, si tampoco puede, no se incrementará ninguna Característica.\n"
+						+ "Tienes un bonificador de +5 a tus puntuaciones de Sabiduría (Percepcion) e Inteligencia (Investigación) pasivas."));
+		anadir(new Dote(TipoDote.OBSERVADOR_SABIDURIA,
+				"Te percatas con facilidad de los detalles de tu entorno, por lo que recibes los beneficios siguientes:\n"
+						+ "Tu puntuación de Sabiduría aumenta en 1 hasta un máximo de 20. Si no puede ser incrementada, aumentará la Inteligencia, si tampoco puede, no se incrementará ninguna Característica.\n"
+						+ "Tienes un bonificador de +5 a tus puntuaciones de Sabiduría (Percepcion) e Inteligencia (Investigación) pasivas."));
+		anadir(new Dote(TipoDote.RESILIENTE_FUERZA, "Obtienes los beneficios siguientes:\n"
+				+ "Tu puntuación de Fuerza aumenta en 1, hasta un máximo de 20.\n"
+				+ "Obtienes competencia en las tiradas de Salvación de Fuerza.\n"
+				+ "Es excluyente con los otros resilientes. Además si ya tienes la característica al máximo y la Salvación de la misma no será aplicada."));
+		anadir(new Dote(TipoDote.RESILIENTE_DESTREZA, "Obtienes los beneficios siguientes:\n"
+				+ "Tu puntuación de Destreza aumenta en 1, hasta un máximo de 20.\n"
+				+ "Obtienes competencia en las tiradas de Salvación de Destreza.\n"
+				+ "Es excluyente con los otros resilientes. Además si ya tienes la característica al máximo y la Salvación de la misma no será aplicada."));
+		anadir(new Dote(TipoDote.RESILIENTE_CONSTITUCION, "Obtienes los beneficios siguientes:\n"
+				+ "Tu puntuación de Constitucion aumenta en 1, hasta un máximo de 20.\n"
+				+ "Obtienes competencia en las tiradas de Salvación de Constitucion.\n"
+				+ "Es excluyente con los otros resilientes. Además si ya tienes la característica al máximo y la Salvación de la misma no será aplicada."));
+		anadir(new Dote(TipoDote.RESILIENTE_INTELIGENCIA, "Obtienes los beneficios siguientes:\n"
+				+ "Tu puntuación de Inteligencia aumenta en 1, hasta un máximo de 20.\n"
+				+ "Obtienes competencia en las tiradas de Salvación de Inteligencia.\n"
+				+ "Es excluyente con los otros resilientes. Además si ya tienes la característica al máximo y la Salvación de la misma no será aplicada."));
+		anadir(new Dote(TipoDote.RESILIENTE_SABIDURIA, "Obtienes los beneficios siguientes:\n"
+				+ "Tu puntuación de Sabiduría aumenta en 1, hasta un máximo de 20.\n"
+				+ "Obtienes competencia en las tiradas de Salvación de Sabiduría.\n"
+				+ "Es excluyente con los otros resilientes. Además si ya tienes la característica al máximo y la Salvación de la misma no será aplicada."));
+		anadir(new Dote(TipoDote.RESILIENTE_CARISMA, "Obtienes los beneficios siguientes:\n"
+				+ "Tu puntuación de Carisma aumenta en 1, hasta un máximo de 20.\n"
+				+ "Obtienes competencia en las tiradas de Salvación de Carisma.\n"
+				+ "Es excluyente con los otros resilientes. Además si ya tienes la característica al máximo y la Salvación de la misma no será aplicada."));
+		anadir(new Dote(TipoDote.RESISTENTE,"Tu dureza y resistencia te otorgan los beneficios siguientes:\n"
+				+ "Tu puntuación de Constitución aumenta en 1, hasta un máximo de 20.\n"
+				+ "Cuando tiras un Dado de Golpe para recuperar puntos de golpe, el número mínimo que recuperas con esta tirada es dos veces tu modificador por Constitución (Como mínimo 2)."));
+		anadir(new Dote(TipoDote.SANADOR, "Tienes talento como médico. Eres capaz de cerrar heridas rápidamente, permitiendo a tus aliados volver al combate. obtienes los beneficios siguientes:\n"
+				+ "Cuando estabilizas a una criatura que está agonizando (con 0 puntos de golpe) utilizando unos útiles de sanador, la criatura también recupera 1 punto de golpe.\n"
+				+ "Como acción, puedes gastar uno de los usos de unos útiles de sanador para atender a una criatura y hacerla recuperar 1d6+4 puntos de golpe. Además el objetivo también recupera tantos puntos de golpe adicionales como su número de Dados de Golpe máximos. Esta criatura no puede volver a recuperar puntos de golpe gracias a esta dote hasta que termine un descanso corto o largo.\n"));
+		anadir(new Dote(TipoDote.TIRADOR_DE_PRIMERA,"Eres un maestro de las armas a distancia, capaz de acertar con disparos que otros considerarían imposibles. Posees los beneficios siguientes:\n"
+				+ "No tienes desventaja en las tiradas de ataque con armas a distancia a alcance largo.\n"
+				+ "Tus ataques con armas a distancia ignoran las coberturas media y tres cuartos.\n"
+				+ "Puedes elegir , antes de hacer un ataque con un arma a distancia con la que seas competente, sufrir un penalizador de -5 a la tirada de ataque. Si impactas, puedes sumar +10 al daño de ataque."));
+		
 	}
 
 	public BibliotecaDotes(List<Dote> listaDotes) {

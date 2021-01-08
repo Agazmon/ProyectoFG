@@ -46,80 +46,69 @@ public class DoteRequisitoCompetencia extends Dote {
 		case MUY_ACORAZADO:
 			if (pj.getCaracteristicas().buscar(Atributo.FUERZA).getPuntuacion() < 20) {
 				pj.getCaracteristicas().buscar(Atributo.FUERZA).aumentarCaracteristica(1);
-			} else {
-				pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
-				throw new IllegalArgumentException(
-						"No se ha podido incrementar la fuerza, ya está al máximo, pero se sigue aplicando la dote.");
 			}
+			pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
 			break;
 		case MODERADAMENTE_ACORAZADO_FUERZA:
 			if (pj.getCaracteristicas().buscar(Atributo.FUERZA).getPuntuacion() < 20) {
 				pj.getCaracteristicas().buscar(Atributo.FUERZA).aumentarCaracteristica(1);
-				pj.getCompetencias().buscar(TipoCompetencia.ARMADURA_MEDIA).setCompetente(true);
-				pj.getCompetencias().buscar(TipoCompetencia.ESCUDOS).setCompetente(true);
 			} else if (pj.getCaracteristicas().buscar(Atributo.DESTREZA).getPuntuacion() < 20) {
 				pj.getCaracteristicas().buscar(Atributo.DESTREZA).aumentarCaracteristica(1);
-				pj.getCompetencias().buscar(TipoCompetencia.ARMADURA_MEDIA).setCompetente(true);
-				pj.getCompetencias().buscar(TipoCompetencia.ESCUDOS).setCompetente(true);
-				pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
-				throw new IllegalArgumentException(
-						"No se ha podido incrementar la fuerza, ya está al máximo, por lo que se ha aumentado la destreza.");
-
-			} else {
-				pj.getCompetencias().buscar(TipoCompetencia.ARMADURA_MEDIA).setCompetente(true);
-				pj.getCompetencias().buscar(TipoCompetencia.ESCUDOS).setCompetente(true);
-				pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
-				throw new IllegalArgumentException(
-						"No se puede subir ninguna de las dos características al personaje ambas están al 20 o superior. Por lo que ese apartado de la dote no será aplicado.");
 			}
+			pj.getCompetencias().aumentarMaximoCompetencias(2);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.ARMADURA_MEDIA);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.ESCUDOS);
+			pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
 			break;
 		case MODERADAMENTE_ACORAZADO_DESTREZA:
 			if (pj.getCaracteristicas().buscar(Atributo.DESTREZA).getPuntuacion() < 20) {
 				pj.getCaracteristicas().buscar(Atributo.DESTREZA).aumentarCaracteristica(1);
-				pj.getCompetencias().buscar(TipoCompetencia.ARMADURA_MEDIA).setCompetente(true);
-				pj.getCompetencias().buscar(TipoCompetencia.ESCUDOS).setCompetente(true);
 			} else if (pj.getCaracteristicas().buscar(Atributo.FUERZA).getPuntuacion() < 20) {
 				pj.getCaracteristicas().buscar(Atributo.FUERZA).aumentarCaracteristica(1);
-				pj.getCompetencias().buscar(TipoCompetencia.ARMADURA_MEDIA).setCompetente(true);
-				pj.getCompetencias().buscar(TipoCompetencia.ESCUDOS).setCompetente(true);
-				pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
-				throw new IllegalArgumentException(
-						"No se ha podido incrementar la destreza, ya está al máximo, por lo que se ha aumentado la fuerza.");
-			} else {
-				pj.getCompetencias().buscar(TipoCompetencia.ARMADURA_MEDIA).setCompetente(true);
-				pj.getCompetencias().buscar(TipoCompetencia.ESCUDOS).setCompetente(true);
-				pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
-				throw new IllegalArgumentException(
-						"No se puede subir ninguna de las dos características al personaje ambas están al 20 o superior. Por lo que ese apartado de la dote no será aplicado.");
 			}
+			pj.getCompetencias().aumentarMaximoCompetencias(2);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.ARMADURA_MEDIA);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.ESCUDOS);
+			pj.getDotes().anadir(new DoteRequisitoCompetencia(this));
 			break;
 		case MAESTRO_EN_ARMADURAS_PESADAS:
 			if (pj.getCaracteristicas().buscar(Atributo.FUERZA).getPuntuacion() < 20) {
 				pj.getCaracteristicas().aumentarCaracteristica(Atributo.FUERZA, 1);
 			}
-
 			break;
 		case LANZADOR_PRECISO_BARDO:
+			pj.getCompetencias().aumentarMaximoCompetencias(1);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BARDO,
 					1);
 			break;
 		case LANZADOR_PRECISO_BRUJO:
+			pj.getCompetencias().aumentarMaximoCompetencias(1);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BRUJO,
 					1);
 			break;
 		case LANZADOR_PRECISO_CLERIGO:
+			pj.getCompetencias().aumentarMaximoCompetencias(1);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.CLERIGO, 1);
 			break;
 		case LANZADOR_PRECISO_DRUIDA:
+			pj.getCompetencias().aumentarMaximoCompetencias(1);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.DRUIDA,
 					1);
 			break;
 		case LANZADOR_PRECISO_HECHICERO:
+			pj.getCompetencias().aumentarMaximoCompetencias(1);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.HECHICERO, 1);
 			break;
 		case LANZADOR_PRECISO_MAGO:
+			pj.getCompetencias().aumentarMaximoCompetencias(1);
+			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.MAGO,
 					1);
 			break;
@@ -179,6 +168,5 @@ public class DoteRequisitoCompetencia extends Dote {
 			}
 		}
 	}
-	
 
 }

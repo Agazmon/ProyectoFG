@@ -28,7 +28,7 @@ public enum TipoSalvacion {
 	private void setAtributoRelacionado(Atributo atributoRelacionado) {
 		this.atributoRelacionado = atributoRelacionado;
 	}
-	public Atributo getAtributoRelacionad() {
+	public Atributo getAtributoRelacionado() {
 		return this.atributoRelacionado;
 	}
 

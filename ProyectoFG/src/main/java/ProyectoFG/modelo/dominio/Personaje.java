@@ -13,8 +13,10 @@ import ProyectoFG.modelo.dao.Dotes;
 import ProyectoFG.modelo.dao.EspaciosConjuro;
 import ProyectoFG.modelo.dao.Habilidades;
 import ProyectoFG.modelo.dao.Idiomas;
+import ProyectoFG.modelo.dao.Maniobras;
 import ProyectoFG.modelo.dao.Monedas;
 import ProyectoFG.modelo.dao.ObjetosInventario;
+import ProyectoFG.modelo.dao.Salvaciones;
 import ProyectoFG.modelo.dao.bibliotecas.BibliotecaHechizos;
 import ProyectoFG.modelo.dominio.accion.TiempoRecuperacion;
 import ProyectoFG.modelo.dominio.arma.Arma;
@@ -48,6 +50,8 @@ public class Personaje {
 	ObjetosInventario inventarioPersonaje;
 	Raza razaPersonaje;
 	Habilidades habilidades;
+	private Maniobras maniobrasPersonaje;
+	private Salvaciones salvaciones;
 	private Idiomas idiomas;
 	int velocidad;
 	private int nivelPersonaje;
@@ -61,7 +65,7 @@ public class Personaje {
 //		this.caracteristicasPersonaje = new Caracteristicas(18, 12, 16, 8, 14, 10);
 		this.habilidades = new Habilidades();
 		this.monedero = new Monedas();
-		this.competencias = new Competencias(Arrays.asList(new Competencia(TipoCompetencia.ARMAS_MARCIALES, true)));
+		this.competencias = new Competencias(Arrays.asList(new Competencia(TipoCompetencia.ARMAS_MARCIALES, true), new Competencia(TipoCompetencia.ARMAS_DE_ASTA,true)));
 		this.hechizosDisponibles = BibliotecaHechizos.getListaHechizos();
 		this.espaciosPersonaje = new EspaciosConjuro(new ArrayList<EspacioConjuro>(
 				Arrays.asList(new EspacioConjuro(NivelHechizo.NIVEL_1, 1, 1, TipoClase.BARBARO, 1, TiempoRecuperacion.DESCANSO_CORTO),
@@ -75,6 +79,8 @@ public class Personaje {
 		setNivelPersonaje(1);
 		setPuntosDeGolpeActuales(10);
 		setPuntosDeGolpeMaximos(10);
+		this.setSalvaciones(new Salvaciones());
+		this.setManiobrasPersonaje(new Maniobras());
 		// new
 		// DoteRequisitoCompetencia(TipoDote.MAESTRO_EN_ARMADURAS_MEDIAS,"descripcion"
 		// ,TipoCompetencia.ARMADURA_MEDIA).anadirDote(this);
@@ -288,6 +294,22 @@ public class Personaje {
 
 	public void setIdiomas(Idiomas idiomas) {
 		this.idiomas = idiomas;
+	}
+
+	public Salvaciones getSalvaciones() {
+		return salvaciones;
+	}
+
+	public void setSalvaciones(Salvaciones salvaciones) {
+		this.salvaciones = salvaciones;
+	}
+
+	public Maniobras getManiobrasPersonaje() {
+		return maniobrasPersonaje;
+	}
+
+	public void setManiobrasPersonaje(Maniobras maniobrasPersonaje) {
+		this.maniobrasPersonaje = maniobrasPersonaje;
 	}
 
 }

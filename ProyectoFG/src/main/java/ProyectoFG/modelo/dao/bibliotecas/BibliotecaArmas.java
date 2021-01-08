@@ -21,10 +21,10 @@ import ProyectoFG.modelo.dominio.tirada.Dado;
 import ProyectoFG.modelo.dominio.tirada.Tirada;
 
 public class BibliotecaArmas {
-	List<Arma> listaArmas;
+	static List<Arma> listaArmas;
 
 	public BibliotecaArmas() {
-		this.listaArmas = new ArrayList<>();
+		BibliotecaArmas.listaArmas = new ArrayList<>();
 		// Cuerpo a cuerpo sencillas
 		listaArmas.add(new Arma("Bastón", 4, 1, new Moneda(TipoMoneda.MONEDA_PLATA, 2), TipoCompetencia.BASTONES,
 				TipoCompetencia.ARMAS_SENCILLAS, TipoArma.CUERPO_A_CUERPO, TipoDano.CONTUNDENTE,
@@ -184,7 +184,7 @@ public class BibliotecaArmas {
 		setListaArmas(getListaArmas());
 	}
 
-	public Arma buscarArma(String nombre) {
+	public static Arma buscarArma(String nombre) {
 		if (nombre == null) {
 			throw new IllegalArgumentException("No se puede buscar una arma por un nombre nulo.");
 		} else if (nombre.isBlank()) {
@@ -198,8 +198,8 @@ public class BibliotecaArmas {
 				}
 			}
 			if (indice != -1) {
-				if (this.listaArmas.get(indice) instanceof Arma) {
-					return (Arma) this.listaArmas.get(indice);
+				if (listaArmas.get(indice) instanceof Arma) {
+					return (Arma) listaArmas.get(indice);
 				} else {
 					return null;
 				}

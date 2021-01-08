@@ -122,6 +122,38 @@ public class Arma extends ObjetoInventario {
 
 	public Tirada atacar(Personaje pj, TipoTirada tirada) {
 		// TODO hacer el ataque
+		// Si el ataque es con el lado opuesto de un arma comprobar si es una de las
+		// armas de asta primero
+		if (this.getListaPropiedadesDelArma().contains(PropiedadesArma.LADO_OPUESTO)) {
+			if (pj.getDotes().buscar(TipoDote.MAESTRO_EN_ARMAS_DE_ASTA) != null) {
+				if(pj.getManoPrincipal()==null) {
+					throw new IllegalArgumentException("El personaje no tiene ningún arma equipada en las manos. Equipale una.");
+				}
+				if (pj.getManoPrincipal().getNombre().equals("Bastón")
+						|| pj.getManoPrincipal().getNombre().equals("Alabarda")
+						|| pj.getManoPrincipal().getNombre().equals("Lanza") || pj.getManoPrincipal().equals("Guja")) {
+					// El arma es una arma de asta por lo que no puede hacer un ataque con el lado
+					// opuesto.
+					int bonificadorAtributo = pj.getCaracteristicas().buscar(Atributo.FUERZA).getModificador();
+					int bonificadorCompetencia = pj.getModificadorCompetencia();
+					if (pj.getCompetencias().buscar(TipoCompetencia.ARMAS_DE_ASTA).isCompetente()) {
+						// Competente
+						return new Tirada(new Dado(getDadoDano().getDado().getCaras()), getDadoDano().getNumeroVeces(),
+								bonificadorAtributo+bonificadorCompetencia, tirada);
+					} else {
+						// NO competente
+						return new Tirada(new Dado(getDadoDano().getDado().getCaras()), getDadoDano().getNumeroVeces(),
+								bonificadorAtributo, tirada);
+					}
+				} else {
+					throw new IllegalArgumentException(
+							"El arma no es una arma de asta por lo que no puedes realizar un ataque con el lado opuesto.");
+				}
+			} else {
+				throw new IllegalArgumentException(
+						"El personaje no tiene la dote de Maestro en Armas de Asta por lo que no puede hacer este tipo de ataque.");
+			}
+		}
 		// Comprobar si está equipada
 		if (!(pj.getManoPrincipal().equals(this)) && !(pj.getManoSecundaria().equals(this))) {
 			throw new IllegalArgumentException(

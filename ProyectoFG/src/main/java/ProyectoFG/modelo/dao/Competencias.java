@@ -10,22 +10,22 @@ import ProyectoFG.modelo.dominio.competencia.TipoCompetencia;
 public class Competencias {
 
 	private List<Competencia> listaCompetencias;
-	private int maximoCompetencias;
+	private int competenciasPorGanar;
 
 	public Competencias() {
 		List<Competencia> lista = new ArrayList<>();
 		setListaCompetencias(lista);
-		setMaximoCompetencias(0);
+		setCompetenciasPorGanar(0);
 	}
 
 	public Competencias(List<Competencia> listaCompetencias) {
 		setListaCompetencias(copiarLista(listaCompetencias));
-		setMaximoCompetencias(listaCompetencias.size());
+		setCompetenciasPorGanar(0);
 	}
 
 	public Competencias(Competencias competencias) {
 		setListaCompetencias(copiarLista(competencias.getListaCompetencias()));
-		setMaximoCompetencias(competencias.getMaximoCompetencias());
+		setCompetenciasPorGanar(competencias.getCompetenciasPorGanar());
 	}
 
 	public List<Competencia> getListaCompetencias() {
@@ -79,20 +79,31 @@ public class Competencias {
 		}
 	}
 
-	public int getMaximoCompetencias() {
-		return maximoCompetencias;
+	public int getCompetenciasPorGanar() {
+		return competenciasPorGanar;
 	}
 
-	public void setMaximoCompetencias(int maximoCompetencias) {
-		this.maximoCompetencias = maximoCompetencias;
+	public void setCompetenciasPorGanar(int competenciasPorGanar) {
+		this.competenciasPorGanar = competenciasPorGanar;
 	}
 
 	public void aumentarMaximoCompetencias(int incremento) {
 		if (incremento <= 0) {
 			throw new IllegalArgumentException("El incremento minimo para el máximo de comptencias es de 1.");
 		} else {
-			setMaximoCompetencias(getMaximoCompetencias() + incremento);
+			setCompetenciasPorGanar(getCompetenciasPorGanar() + incremento);
 		}
 
 	}
+
+	public void ganarCompetencia(TipoCompetencia competencia) {
+		if(getCompetenciasPorGanar()==0) {
+			throw new IllegalArgumentException("Se ha alcanzado el máximo de competencias que este personaje puede ganar.");
+		} else {
+			buscar(competencia).setCompetente(true);
+			setCompetenciasPorGanar(getCompetenciasPorGanar()-1);
+		}
+
+	}
+
 }

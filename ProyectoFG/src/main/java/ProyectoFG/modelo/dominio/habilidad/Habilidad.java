@@ -55,10 +55,12 @@ public class Habilidad {
 			tipoTirada = comprobarSigilo(personaje, tipoTirada);
 		if (isCompetencia()) {
 			tirada = new Tirada(new Dado(20), 1, (personaje.getModificadorCompetencia()
-					+ personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador()),tipoTirada);
+					+ personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador()),
+					tipoTirada);
 		} else {
 			tirada = new Tirada(new Dado(20), 1,
-					personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador(),tipoTirada);
+					personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador(),
+					tipoTirada);
 		}
 		tirada.tirar();
 		return tirada;
@@ -79,6 +81,35 @@ public class Habilidad {
 			}
 		}
 		return tipoTirada;
+	}
+
+	public int puntuacionHabilidadPasiva(Personaje personaje, TipoTirada tipoTirada) {
+		int base = 10;
+		if (getHabilidad() == TipoHabilidad.PERCEPCION || getHabilidad() == TipoHabilidad.INVESTIGACION) {
+			if (personaje.getDotes().buscar(TipoDote.OBSERVADOR_INTELIGENCIA) != null
+					|| personaje.getDotes().buscar(TipoDote.OBSERVADOR_SABIDURIA) != null) {
+				base += 5;
+			}
+		}
+		if (tipoTirada != null) {
+			switch (tipoTirada) {
+			case DESVENTAJA:
+				base -= 5;
+				break;
+			case VENTAJA:
+				base += 5;
+				break;
+			default:
+				break;
+			}
+		}
+		if (personaje.getHabilidades().buscar(this).isCompetencia()) {
+			return base + personaje.getModificadorCompetencia()
+					+ personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador();
+		} else {
+			return base
+					+ personaje.getCaracteristicas().buscar(getHabilidad().getAtributoRelacionado()).getModificador();
+		}
 	}
 
 	@Override

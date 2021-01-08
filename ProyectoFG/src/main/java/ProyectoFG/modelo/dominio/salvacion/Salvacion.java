@@ -3,6 +3,7 @@ package ProyectoFG.modelo.dominio.salvacion;
 import java.util.Objects;
 
 import ProyectoFG.modelo.dominio.Personaje;
+import ProyectoFG.modelo.dominio.dote.TipoDote;
 import ProyectoFG.modelo.dominio.tirada.Dado;
 import ProyectoFG.modelo.dominio.tirada.Tirada;
 
@@ -56,10 +57,10 @@ public class Salvacion {
 		Tirada tirada;
 		if (isCompetencia()) {
 			tirada = new Tirada(new Dado(20), 1, (personaje.getModificadorCompetencia()
-					+ personaje.getCaracteristicas().buscar(getSalvacion().getAtributoRelacionad()).getModificador()));
+					+ personaje.getCaracteristicas().buscar(getSalvacion().getAtributoRelacionado()).getModificador()));
 		} else {
 			tirada = new Tirada(new Dado(20), 1,
-					personaje.getCaracteristicas().buscar(getSalvacion().getAtributoRelacionad()).getModificador());
+					personaje.getCaracteristicas().buscar(getSalvacion().getAtributoRelacionado()).getModificador());
 		}
 		tirada.tirar();
 		return tirada;
