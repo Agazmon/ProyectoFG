@@ -86,4 +86,10 @@ public class ObjetosInventario {
 	public int getPesoTotalInventario() {
 		return 1;
 	}
+
+	@Override
+	public String toString() {
+		return "ObjetosInventario [listaObjetosInventario=" + listaObjetosInventario + "]";
+	}
+	
 }

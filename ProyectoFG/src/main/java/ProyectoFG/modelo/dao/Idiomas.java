@@ -74,4 +74,10 @@ public class Idiomas {
 		}
 
 	}
+
+	@Override
+	public String toString() {
+		return "Idiomas [listaIdiomas=" + listaIdiomas + ", numeroMaximosIdiomas=" + numeroMaximosIdiomas + "]";
+	}
+	
 }

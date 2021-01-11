@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ProyectoFG.modelo.dominio.dote.Dote;
+import ProyectoFG.modelo.dominio.dote.DoteRacial;
 import ProyectoFG.modelo.dominio.dote.DoteRequisitoAtributo;
 import ProyectoFG.modelo.dominio.dote.DoteRequisitoCompetencia;
 import ProyectoFG.modelo.dominio.dote.TipoDote;
 
 public class Dotes {
-	List<Dote> listaDotes;
+	private List<Dote> listaDotes;
 
 	public Dotes() {
 		this.listaDotes = new ArrayList<>();
@@ -73,14 +74,22 @@ public class Dotes {
 		} else if (buscar(doteAnadir) != null) {
 			throw new IllegalArgumentException("El personaje ya tiene la dote añadida.");
 		} else {
-			if (doteAnadir instanceof Dote) {
-				this.listaDotes.add(new Dote(doteAnadir));
+			if (doteAnadir instanceof DoteRacial) {
+				this.listaDotes.add(new DoteRacial((DoteRacial) doteAnadir));
 			} else if (doteAnadir instanceof DoteRequisitoAtributo) {
 				this.listaDotes.add(new DoteRequisitoAtributo((DoteRequisitoAtributo) doteAnadir));
 			} else if (doteAnadir instanceof DoteRequisitoCompetencia) {
 				this.listaDotes.add(new DoteRequisitoCompetencia((DoteRequisitoCompetencia) doteAnadir));
+			} else if (doteAnadir instanceof Dote) {
+				this.listaDotes.add(new Dote((Dote) doteAnadir));
 			}
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Dotes [listaDotes=" + listaDotes + "]";
+	}
+	
 
 }

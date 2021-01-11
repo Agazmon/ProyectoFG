@@ -79,37 +79,37 @@ public class DoteRequisitoCompetencia extends Dote {
 		case LANZADOR_PRECISO_BARDO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BARDO,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BARDO,
 					1);
 			break;
 		case LANZADOR_PRECISO_BRUJO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BRUJO,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BRUJO,
 					1);
 			break;
 		case LANZADOR_PRECISO_CLERIGO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO)
+			pj.getEspacios().buscar(NivelHechizo.TRUCO)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.CLERIGO, 1);
 			break;
 		case LANZADOR_PRECISO_DRUIDA:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.DRUIDA,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.DRUIDA,
 					1);
 			break;
 		case LANZADOR_PRECISO_HECHICERO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO)
+			pj.getEspacios().buscar(NivelHechizo.TRUCO)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.HECHICERO, 1);
 			break;
 		case LANZADOR_PRECISO_MAGO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.MAGO,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.MAGO,
 					1);
 			break;
 		// Dotes con requisito de competencia con solo texto

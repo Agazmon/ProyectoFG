@@ -299,7 +299,7 @@ public class Hechizo {
 		} else if (espacioConsumir.equals(NivelHechizo.RITUAL)) {
 			if (getPuedeRitual().equals(NivelHechizo.RITUAL)) {
 				try {
-					EspacioConjuro espacioConjuro = pj.getEspaciosPersonaje().buscar(getNivelBaseHechizo());
+					EspacioConjuro espacioConjuro = pj.getEspacios().buscar(getNivelBaseHechizo());
 					if (pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida())
 							.isCompetente()) {
 						return true;
@@ -341,7 +341,7 @@ public class Hechizo {
 				}
 			} else {
 				if (espacioConsumir.getValorNivelHechizo() >= getNivelBaseHechizo().getValorNivelHechizo()) {
-					EspacioConjuro espacioPersonaje = pj.getEspaciosPersonaje().buscar(espacioConsumir);
+					EspacioConjuro espacioPersonaje = pj.getEspacios().buscar(espacioConsumir);
 					if (espacioPersonaje.comprobarEspacios()) {
 						if (pj.getCompetencias().buscar(pj.getArmadura().getTipoArmadura().getCompetenciaRequerida())
 								.isCompetente()) {

@@ -2,6 +2,7 @@ package ProyectoFG.modelo.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import ProyectoFG.modelo.dominio.accion.TiempoRecuperacion;
 import ProyectoFG.modelo.dominio.clase.TipoClase;
@@ -9,7 +10,11 @@ import ProyectoFG.modelo.dominio.hechizo.EspacioConjuro;
 import ProyectoFG.modelo.dominio.hechizo.NivelHechizo;
 
 public class EspaciosConjuro {
-	List<EspacioConjuro> espaciosConjuro;
+	private List<EspacioConjuro> espaciosConjuro;
+
+	public EspaciosConjuro() {
+		setEspaciosConjuro(new ArrayList<>());
+	}
 
 	public EspaciosConjuro(List<EspacioConjuro> espacios) {
 		setEspaciosConjuro(copiaEspaciosConjuro(espacios));
@@ -43,9 +48,13 @@ public class EspaciosConjuro {
 		if (espacioInsertar == null) {
 			throw new IllegalArgumentException("No se puede añadir un espacio de hechizo nulo.");
 		} else if (espaciosConjuro.contains(espacioInsertar)) {
-			throw new IllegalArgumentException("No se puede insertar un espacio de hechizo que ya existe.");
+			int index = espaciosConjuro.indexOf(espacioInsertar);
+			EspacioConjuro encontrado = espaciosConjuro.get(index);
+			for (Entry<TipoClase, Integer> iteracion : espacioInsertar.getCantidadHechizosParaAprender().entrySet()) {
+				encontrado.aumentarCapacidadHechizosParaAprender(iteracion.getKey(), iteracion.getValue());
+			}
 		} else {
-
+			this.espaciosConjuro.add(espacioInsertar);
 		}
 	}
 
@@ -64,5 +73,11 @@ public class EspaciosConjuro {
 		}
 
 	}
+
+	@Override
+	public String toString() {
+		return "EspaciosConjuro [espaciosConjuro=" + espaciosConjuro + "]";
+	}
+	
 
 }

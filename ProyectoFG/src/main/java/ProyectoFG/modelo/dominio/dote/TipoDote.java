@@ -45,7 +45,23 @@ public enum TipoDote {
 	VERSADO_EN_UN_ELEMENTO_FRIO("Versado en un elemento, Tipo de daño: Frío"),
 	VERSADO_EN_UN_ELEMENTO_FUEGO("Versado en un elemento, Tipo de daño: Fuego"),
 	VERSADO_EN_UN_ELEMENTO_RELAMPAGO("Versado en un elemento, Tipo de daño: Relámpago"),
-	VERSADO_EN_UN_ELEMENTO_TRUENO("Versado en un elemento, Tipo de daño: Trueno");
+	VERSADO_EN_UN_ELEMENTO_TRUENO("Versado en un elemento, Tipo de daño: Trueno"),
+	// DOTES RACIALES
+	VISION_EN_LA_OSCURIDAD("Visión en la Oscuridad"),
+	VISION_EN_LA_OSCURIDAD_MEJORADA("Visión en la oscuridad mejorada"), RESISTENCIA_ENANA("Resistencia enana"),
+	AGUANTE_ENANO("Aguante Enano"), ENTRENAMIENTO_DE_COMBATE_ENANO("Entrenamiento de combate enano"),
+	ENTRENAMIENTO_CON_ARMADURAS_ENANAS("Entrenamiento con Armadura Enana"),
+	COMPETENCIA_HERRAMIENTAS("Competencia con Herramientas"), COMPETENCIA_ARMADURAS("Competencia con armaduras"),
+	AFINIDAD_PIEDRA("Afinidad con la piedra"), IDIOMAS_ADICIONAL("Idiomas Raciales."),
+	IDIOMAS_RACIALES("Idiomas Raciales."), IDIOMAS_SUBRACIALES("Idiomas Subraciales."),
+	MEJORA_CARACTERISTICA("Mejora de característica, raza."),
+	MEJORA_CARACTERISTICA_SUBRAZA("Mejora de característica, subraza"), SENTIDOS_AGUDOS("Sentidos Agudos"),
+	LINAJE_FEERICO("Linaje Feérico"), TRANCE("Trance"), ENTRENAMIENTO_ARMAS_ELFICAS("Entrenamiento con Almas Élficas"),
+	ENTRENAMIENTO_ARMAS_DROW("Entrenamiento con Armas Drow"), TRUCO("Truco"),
+	MASCARA_DE_LA_NATURALEZA("Máscara de la Naturaleza"), SENSIBILIDAD_A_LA_LUZ_SOLAR("Sensibilidad a la luz solar"),
+	MAGIA_DROW("Magia drow"), VALIENTE("Valiente"), AGILIDAD_DE_MEDIANO("Agilidad de mediano"),SIGILOSO_POR_NATURALEZA("Sigiloso por naturaleza"),RESISTENCIA_FORNIDO("'Resistencia de Fornido");
+
+	;
 
 	private String nombreDote;
 

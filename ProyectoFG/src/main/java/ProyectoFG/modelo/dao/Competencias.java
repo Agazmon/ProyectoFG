@@ -89,7 +89,7 @@ public class Competencias {
 
 	public void aumentarMaximoCompetencias(int incremento) {
 		if (incremento <= 0) {
-			throw new IllegalArgumentException("El incremento minimo para el máximo de comptencias es de 1.");
+			throw new IllegalArgumentException("El incremento minimo para el máximo de competencias es de 1.");
 		} else {
 			setCompetenciasPorGanar(getCompetenciasPorGanar() + incremento);
 		}
@@ -105,5 +105,12 @@ public class Competencias {
 		}
 
 	}
+
+	@Override
+	public String toString() {
+		return "Competencias [listaCompetencias=" + listaCompetencias + ", competenciasPorGanar=" + competenciasPorGanar
+				+ "]";
+	}
+	
 
 }

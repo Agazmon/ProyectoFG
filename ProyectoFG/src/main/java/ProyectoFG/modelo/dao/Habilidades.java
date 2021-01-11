@@ -9,11 +9,18 @@ import ProyectoFG.modelo.dominio.habilidad.TipoHabilidad;
 public class Habilidades {
 
 	private List<Habilidad> listaHabilidades;
+	private int competenciasPorGanar;
 
 	// Constructores
 	public Habilidades() {
 		listaHabilidades = new ArrayList<>();
+		setCompetenciasPorGanar(0);
 		insertarFaltantes();
+	}
+
+	public Habilidades(Habilidades habilidades) {
+		setHabilidades(habilidades.getHabilidades());
+		setCompetenciasPorGanar(habilidades.getCompetenciasPorGanar());
 	}
 
 	public Habilidades(Boolean[] competencias) {
@@ -23,6 +30,12 @@ public class Habilidades {
 			throw new IllegalArgumentException("Sobran competencias para asignar a las habilidades. Hay mas de 18.");
 		} else {
 			this.listaHabilidades = new ArrayList<>();
+			int maximo = 0;
+			for (int i = 0; i < competencias.length; i++) {
+				if (competencias[i])
+					maximo += 1;
+			}
+			setCompetenciasPorGanar(maximo);
 			insertar((new Habilidad(TipoHabilidad.ATLETISMO, competencias[0])));
 			insertar((new Habilidad(TipoHabilidad.ACROBACIAS, competencias[1])));
 			insertar((new Habilidad(TipoHabilidad.JUEGO_DE_MANOS, competencias[2])));
@@ -50,9 +63,16 @@ public class Habilidades {
 		} else {
 			if (listaHabilidades.isEmpty()) {
 				this.listaHabilidades = new ArrayList<>();
+				setCompetenciasPorGanar(0);
 				insertarFaltantes();
 			} else {
 				this.listaHabilidades = new ArrayList<>();
+				int maximo = 0;
+				for (Habilidad habilidad : listaHabilidades) {
+					if (habilidad.isCompetencia())
+						maximo += 1;
+				}
+				setCompetenciasPorGanar(maximo);
 				for (Habilidad habilidad : listaHabilidades) {
 					insertar(habilidad);
 				}
@@ -70,6 +90,14 @@ public class Habilidades {
 		this.listaHabilidades = lista;
 	}
 
+	public int getCompetenciasPorGanar() {
+		return competenciasPorGanar;
+	}
+
+	private void setCompetenciasPorGanar(int competenciasPorGanar) {
+		this.competenciasPorGanar = competenciasPorGanar;
+	}
+
 	// Metodos de utilidad
 	private void insertar(Habilidad habilidadInsertar) {
 		if (habilidadInsertar == null) {
@@ -77,7 +105,11 @@ public class Habilidades {
 		} else if (listaHabilidades.contains(habilidadInsertar)) {
 			throw new IllegalArgumentException("No se puede insertar una habilidad que ya existe");
 		} else {
-			listaHabilidades.add(new Habilidad(habilidadInsertar));
+			if (this.listaHabilidades.size() <= 18) {
+				this.listaHabilidades.add(new Habilidad(habilidadInsertar));
+			} else {
+				throw new IllegalArgumentException("No se pueden añadir mas habilidades a las habilidades.");
+			}
 		}
 	}
 
@@ -164,42 +196,29 @@ public class Habilidades {
 		}
 	}
 
-	public void cambiarCompetencia(Habilidad habilidadCambio, boolean cambio) {
-		Habilidad habilidadEncontrada = buscar(habilidadCambio);
-		if (habilidadEncontrada == null) {
-			throw new IllegalArgumentException("No se puede cambiar la competencia de una habilidad inexistente");
+	public void ganarCompetencia(TipoHabilidad habilidad) {
+		if (habilidad == null) {
+			throw new IllegalArgumentException("El personaje no puede ganar la competencia en una habilidad nula.");
+		} else if (buscar(habilidad) == null) {
+			throw new IllegalArgumentException("El personaje no tiene la habilidad por lo tanto no puede ganarla.");
 		} else {
-			habilidadEncontrada.setCompetencia(cambio);
+			if (getCompetenciasPorGanar() > 0) {
+				setCompetenciasPorGanar(getCompetenciasPorGanar() - 1);
+				buscar(habilidad).setCompetencia(true);
+			} else {
+				throw new IllegalArgumentException("El personaje no puede ganar competencia en mas habilidades.");
+			}
 		}
 	}
-
-	public void cambiarCompetencia(TipoHabilidad habilidadCambio, boolean cambio) {
-		Habilidad habilidadEncontrada = buscar(habilidadCambio);
-		if (habilidadEncontrada == null) {
-			throw new IllegalArgumentException("No se puede cambiar la competencia de una habilidad inexistente");
+	
+	public void aumentarMaximoCompetencias(int incremento) {
+		if(incremento<=0) {
+			throw new IllegalArgumentException("El incremento minimo para el máximo de competencias es de 1.");
 		} else {
-			habilidadEncontrada.setCompetencia(cambio);
+			setCompetenciasPorGanar(incremento);
 		}
 	}
-
-	public void cambiarCompetencia(Habilidad habilidadCambio) {
-		Habilidad habilidadEncontrada = buscar(habilidadCambio);
-		if (habilidadEncontrada == null) {
-			throw new IllegalArgumentException("No se puede cambiar la competencia de una habilidad inexistente");
-		} else {
-			habilidadEncontrada.setCompetencia(!habilidadEncontrada.isCompetencia());
-		}
-	}
-
-	public void cambiarCompetencia(TipoHabilidad habilidadCambio) {
-		Habilidad habilidadEncontrada = buscar(habilidadCambio);
-		if (habilidadEncontrada == null) {
-			throw new IllegalArgumentException("No se puede cambiar la competencia de una habilidad inexistente");
-		} else {
-			habilidadEncontrada.setCompetencia(!habilidadEncontrada.isCompetencia());
-		}
-	}
-
+	
 	// Métodos de soporte
 	private List<Habilidad> copiaArray(List<Habilidad> listaPrincipal) {
 		List<Habilidad> listaCopia = new ArrayList<>();

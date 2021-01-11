@@ -187,49 +187,49 @@ public class Dote {
 			pj.getDotes().anadir(new Dote(this));
 			break;
 		case INICIADO_EN_LA_MAGIA_BARDO:
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BARDO,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BARDO,
 					2);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.NIVEL_1)
+			pj.getEspacios().buscar(NivelHechizo.NIVEL_1)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.BARDO, 1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getDotes().anadir(new Dote(this));
 			break;
 		case INICIADO_EN_LA_MAGIA_BRUJO:
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BRUJO,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.BRUJO,
 					2);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.NIVEL_1)
+			pj.getEspacios().buscar(NivelHechizo.NIVEL_1)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.BRUJO, 1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getDotes().anadir(new Dote(this));
 			break;
 		case INICIADO_EN_LA_MAGIA_CLERIGO:
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO)
+			pj.getEspacios().buscar(NivelHechizo.TRUCO)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.CLERIGO, 2);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.NIVEL_1)
+			pj.getEspacios().buscar(NivelHechizo.NIVEL_1)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.CLERIGO, 1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getDotes().anadir(new Dote(this));
 			break;
 		case INICIADO_EN_LA_MAGIA_DRUIDA:
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.DRUIDA,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.DRUIDA,
 					2);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.NIVEL_1)
+			pj.getEspacios().buscar(NivelHechizo.NIVEL_1)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.DRUIDA, 1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getDotes().anadir(new Dote(this));
 			break;
 		case INICIADO_EN_LA_MAGIA_HECHICERO:
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO)
+			pj.getEspacios().buscar(NivelHechizo.TRUCO)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.HECHICERO, 2);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.NIVEL_1)
+			pj.getEspacios().buscar(NivelHechizo.NIVEL_1)
 					.aumentarCapacidadHechizosParaAprender(TipoClase.HECHICERO, 1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getDotes().anadir(new Dote(this));
 			break;
 		case INICIADO_EN_LA_MAGIA_MAGO:
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.MAGO,
+			pj.getEspacios().buscar(NivelHechizo.TRUCO).aumentarCapacidadHechizosParaAprender(TipoClase.MAGO,
 					2);
-			pj.getEspaciosPersonaje().buscar(NivelHechizo.NIVEL_1).aumentarCapacidadHechizosParaAprender(TipoClase.MAGO,
+			pj.getEspacios().buscar(NivelHechizo.NIVEL_1).aumentarCapacidadHechizosParaAprender(TipoClase.MAGO,
 					1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
 			pj.getDotes().anadir(new Dote(this));
@@ -280,7 +280,7 @@ public class Dote {
 			pj.getDotes().anadir(new Dote(this));
 			break;
 		case MAESTRO_EN_ARMAS_DE_ASTA:
-			pj.getInventarioPersonaje()
+			pj.getInventario()
 					.anadirObjeto(new Arma("Lado opuesto del arma", 0, 1, new Moneda(TipoMoneda.MONEDA_COBRE, 0),
 							TipoCompetencia.ARMAS_DE_ASTA, TipoCompetencia.ARMAS_MARCIALES, TipoArma.CUERPO_A_CUERPO,
 							TipoDano.CONTUNDENTE, Arrays.asList(PropiedadesArma.LADO_OPUESTO),
@@ -295,7 +295,7 @@ public class Dote {
 			}
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.ARMAS_IMPROVISADAS);
-			pj.getInventarioPersonaje()
+			pj.getInventario()
 					.anadirObjeto(new Arma("Ataque sin armas", 0, 1, new Moneda(TipoMoneda.MONEDA_COBRE, 0),
 							TipoCompetencia.ARMAS_IMPROVISADAS, TipoCompetencia.ARMAS_IMPROVISADAS,
 							TipoArma.CUERPO_A_CUERPO, TipoDano.CONTUNDENTE, null, new Tirada(new Dado(4))));
@@ -309,7 +309,7 @@ public class Dote {
 			}
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.ARMAS_IMPROVISADAS);
-			pj.getInventarioPersonaje()
+			pj.getInventario()
 					.anadirObjeto(new Arma("Ataque sin armas", 0, 1, new Moneda(TipoMoneda.MONEDA_COBRE, 0),
 							TipoCompetencia.ARMAS_IMPROVISADAS, TipoCompetencia.ARMAS_IMPROVISADAS,
 							TipoArma.CUERPO_A_CUERPO, TipoDano.CONTUNDENTE, null, new Tirada(new Dado(4))));
@@ -456,7 +456,7 @@ public class Dote {
 
 	@Override
 	public String toString() {
-		return "Dote [tipoDote=" + tipoDote + ", descripcion=" + descripcion + "]";
+		return "Dote [Nombre=" + tipoDote.getNombreDote() + ", descripcion=" + descripcion + "]";
 	}
 
 }

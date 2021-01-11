@@ -182,8 +182,8 @@ public class Arma extends ObjetoInventario {
 				// Si es pesada comprobar que no es pequeño
 			}
 			if (getListaPropiedadesDelArma().contains(PropiedadesArma.PESADA)) {
-				if (pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.PEQUENA)
-						|| pj.getRazaPersonaje().getTamanoRaza().equals(TamanoRaza.DIMINUTA)) {
+				if (pj.getRaza().getTamanoRaza().equals(TamanoRaza.PEQUENA)
+						|| pj.getRaza().getTamanoRaza().equals(TamanoRaza.DIMINUTA)) {
 					if (tirada.equals(TipoTirada.VENTAJA))
 						tirada = TipoTirada.NEUTRA;
 					else

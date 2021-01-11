@@ -81,7 +81,7 @@ public class ArmaDistancia extends Arma {
 	@Override
 	public Tirada atacar(Personaje pj, TipoTirada tirada) {
 		if (getListaPropiedadesDelArma().contains(PropiedadesArma.MUNICION)) {
-			pj.getInventarioPersonaje().getTipoMunicion(this.getMunicionUsada()).consumirUnidad();
+			pj.getInventario().getTipoMunicion(this.getMunicionUsada()).consumirUnidad();
 		}
 		if (getListaPropiedadesDelArma().contains(PropiedadesArma.RECARGA)) {
 			if (pj.getCompetencias().buscar(getCompetenciaEspecifica()).isCompetente()

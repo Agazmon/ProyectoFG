@@ -1,10 +1,6 @@
 package ProyectoFG.modelo.dominio;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.naming.OperationNotSupportedException;
 
 import ProyectoFG.modelo.dao.Caracteristicas;
 import ProyectoFG.modelo.dao.Competencias;
@@ -12,27 +8,24 @@ import ProyectoFG.modelo.dao.Contadores;
 import ProyectoFG.modelo.dao.Dotes;
 import ProyectoFG.modelo.dao.EspaciosConjuro;
 import ProyectoFG.modelo.dao.Habilidades;
+import ProyectoFG.modelo.dao.Hechizos;
 import ProyectoFG.modelo.dao.Idiomas;
 import ProyectoFG.modelo.dao.Maniobras;
 import ProyectoFG.modelo.dao.Monedas;
 import ProyectoFG.modelo.dao.ObjetosInventario;
 import ProyectoFG.modelo.dao.Salvaciones;
-import ProyectoFG.modelo.dao.bibliotecas.BibliotecaHechizos;
-import ProyectoFG.modelo.dominio.accion.TiempoRecuperacion;
 import ProyectoFG.modelo.dominio.arma.Arma;
 import ProyectoFG.modelo.dominio.arma.TipoArma;
 import ProyectoFG.modelo.dominio.armadura.Armadura;
 import ProyectoFG.modelo.dominio.armadura.TipoArmadura;
-import ProyectoFG.modelo.dominio.clase.TipoClase;
-import ProyectoFG.modelo.dominio.competencia.Competencia;
 import ProyectoFG.modelo.dominio.competencia.TipoCompetencia;
-import ProyectoFG.modelo.dominio.dote.DoteRequisitoCompetencia;
 import ProyectoFG.modelo.dominio.dote.TipoDote;
-import ProyectoFG.modelo.dominio.hechizo.EspacioConjuro;
 import ProyectoFG.modelo.dominio.hechizo.Hechizo;
-import ProyectoFG.modelo.dominio.hechizo.NivelHechizo;
+import ProyectoFG.modelo.dominio.idioma.TipoIdioma;
 import ProyectoFG.modelo.dominio.raza.Raza;
-import ProyectoFG.modelo.dominio.raza.TamanoRaza;
+import ProyectoFG.modelo.dominio.raza.hija.ElfoAlto;
+import ProyectoFG.modelo.dominio.raza.hija.ElfoBosques;
+import ProyectoFG.modelo.dominio.raza.hija.EnanoColinas;
 
 public class Personaje {
 	int modificadorCompetencia;
@@ -40,15 +33,15 @@ public class Personaje {
 	Monedas monedero;
 	Armadura armadura;
 	Armadura escudo;
-	EspaciosConjuro espaciosPersonaje;
-	List<Hechizo> hechizosDisponibles;
+	EspaciosConjuro espacios;
+	Hechizos hechizos;
 	Contadores contadores;
 	Competencias competencias;
 	Dotes dotes;
 	Arma manoSecundaria;
 	Arma manoPrincipal;
-	ObjetosInventario inventarioPersonaje;
-	Raza razaPersonaje;
+	ObjetosInventario inventario;
+	Raza raza;
 	Habilidades habilidades;
 	private Maniobras maniobrasPersonaje;
 	private Salvaciones salvaciones;
@@ -59,28 +52,43 @@ public class Personaje {
 	private int puntosDeGolpeMaximos;
 	
 	public Personaje(Armadura armadura, Armadura escudo) {
-		this.modificadorCompetencia = 1;
-		this.caracteristicasPersonaje = new Caracteristicas(13, 20, 10, 13, 13, 10);
-//		new Caracteristicas(fuerza, destreza, constitucion, inteligencia, sabiduria, carisma);
-//		this.caracteristicasPersonaje = new Caracteristicas(18, 12, 16, 8, 14, 10);
-		this.habilidades = new Habilidades();
-		this.monedero = new Monedas();
-		this.competencias = new Competencias(Arrays.asList(new Competencia(TipoCompetencia.ARMAS_MARCIALES, true), new Competencia(TipoCompetencia.ARMAS_DE_ASTA,true)));
-		this.hechizosDisponibles = BibliotecaHechizos.getListaHechizos();
-		this.espaciosPersonaje = new EspaciosConjuro(new ArrayList<EspacioConjuro>(
-				Arrays.asList(new EspacioConjuro(NivelHechizo.NIVEL_1, 1, 1, TipoClase.BARBARO, 1, TiempoRecuperacion.DESCANSO_CORTO),
-						new EspacioConjuro(NivelHechizo.NIVEL_2, 1, 1, TipoClase.BARDO, 1, TiempoRecuperacion.DESCANSO_LARGO))));
+		setCaracteristicasPersonaje(new Caracteristicas(19,19,19,19,19,19));
+		setSalvaciones(new Salvaciones());
+		setHabilidades(new Habilidades());
+		setCompetencias(new Competencias());
+		setMonedero(new Monedas());
+		setIdiomas(new Idiomas());
+		setInventario(new ObjetosInventario());
 		setArmadura(armadura);
 		setEscudo(escudo);
-		this.inventarioPersonaje = new ObjetosInventario();
-		this.razaPersonaje = new Raza("Humano", TamanoRaza.PEQUENA);
-		this.setIdiomas(new Idiomas());
-		this.dotes = new Dotes();
-		setNivelPersonaje(1);
-		setPuntosDeGolpeActuales(10);
-		setPuntosDeGolpeMaximos(10);
-		this.setSalvaciones(new Salvaciones());
-		this.setManiobrasPersonaje(new Maniobras());
+		setEspacios(new EspaciosConjuro());
+		setDotes(new Dotes());
+		setRaza(new ElfoBosques(this));
+//		setTrasfondo();
+//		setClase();
+		
+		
+//		this.modificadorCompetencia = 1;
+//		this.caracteristicasPersonaje = new Caracteristicas(13, 20, 10, 13, 13, 10);
+////		new Caracteristicas(fuerza, destreza, constitucion, inteligencia, sabiduria, carisma);
+////		this.caracteristicasPersonaje = new Caracteristicas(18, 12, 16, 8, 14, 10);
+//		this.habilidades = new Habilidades();
+//		this.monedero = new Monedas();
+//		this.competencias = new Competencias(Arrays.asList(new Competencia(TipoCompetencia.ARMAS_MARCIALES, true), new Competencia(TipoCompetencia.ARMAS_DE_ASTA,true)));
+//		this.hechizosDisponibles = BibliotecaHechizos.getListaHechizos();
+//		this.espaciosPersonaje = new EspaciosConjuro(new ArrayList<EspacioConjuro>(
+//				Arrays.asList(new EspacioConjuro(NivelHechizo.NIVEL_1, 1, 1, TipoClase.BARBARO, 1, TiempoRecuperacion.DESCANSO_CORTO),
+//						new EspacioConjuro(NivelHechizo.NIVEL_2, 1, 1, TipoClase.BARDO, 1, TiempoRecuperacion.DESCANSO_LARGO))));
+//		setArmadura(armadura);
+//		setEscudo(escudo);
+//		this.inventarioPersonaje = new ObjetosInventario();
+//		this.setIdiomas(new Idiomas());
+//		this.dotes = new Dotes();
+//		setNivelPersonaje(1);
+//		setPuntosDeGolpeActuales(10);
+//		setPuntosDeGolpeMaximos(10);
+//		this.setSalvaciones(new Salvaciones());
+//		this.setManiobrasPersonaje(new Maniobras());
 		// new
 		// DoteRequisitoCompetencia(TipoDote.MAESTRO_EN_ARMADURAS_MEDIAS,"descripcion"
 		// ,TipoCompetencia.ARMADURA_MEDIA).anadirDote(this);
@@ -140,20 +148,20 @@ public class Personaje {
 		}
 	}
 
-	public EspaciosConjuro getEspaciosPersonaje() {
-		return espaciosPersonaje;
+	public EspaciosConjuro getEspacios() {
+		return espacios;
 	}
 
-	public void setEspaciosPersonaje(EspaciosConjuro espaciosPersonaje) {
-		this.espaciosPersonaje = espaciosPersonaje;
+	private void setEspacios(EspaciosConjuro espacios) {
+		this.espacios = espacios;
 	}
 
-	public List<Hechizo> getHechizosDisponibles() {
-		return hechizosDisponibles;
+	public Hechizos getHechizos() {
+		return hechizos;
 	}
 
-	public void setHechizosDisponibles(List<Hechizo> hechizosDisponibles) {
-		this.hechizosDisponibles = hechizosDisponibles;
+	public void setHechizosDisponibles(Hechizos hechizos) {
+		this.hechizos = hechizos;
 	}
 
 	public int getModificadorCompetencia() {
@@ -224,20 +232,20 @@ public class Personaje {
 		}
 	}
 
-	public ObjetosInventario getInventarioPersonaje() {
-		return inventarioPersonaje;
+	public ObjetosInventario getInventario() {
+		return inventario;
 	}
 
-	public void setInventarioPersonaje(ObjetosInventario inventarioPersonaje) {
-		this.inventarioPersonaje = inventarioPersonaje;
+	public void setInventario(ObjetosInventario inventario) {
+		this.inventario = inventario;
 	}
 
-	public Raza getRazaPersonaje() {
-		return razaPersonaje;
+	public Raza getRaza() {
+		return raza;
 	}
 
-	public void setRazaPersonaje(Raza razaPersonaje) {
-		this.razaPersonaje = razaPersonaje;
+	private void setRaza(Raza raza) {
+		this.raza = raza;
 	}
 
 	public Arma getManoSecundaria() {
@@ -311,5 +319,20 @@ public class Personaje {
 	public void setManiobrasPersonaje(Maniobras maniobrasPersonaje) {
 		this.maniobrasPersonaje = maniobrasPersonaje;
 	}
+
+	@Override
+	public String toString() {
+		return "Personaje [modificadorCompetencia=" + modificadorCompetencia + "\n, caracteristicasPersonaje="
+				+ caracteristicasPersonaje + "\n, monedero=" + monedero + "\n, armadura=" + armadura + "\n, escudo=" + escudo
+				+ "\n, espaciosPersonaje=" + espacios + "\n, hechizosDisponibles=" + hechizos
+				+ "\n, contadores=" + contadores + "\n, competencias=" + competencias + "\n, dotes=" + dotes
+				+ "\n, manoSecundaria=" + manoSecundaria + "\n, manoPrincipal=" + manoPrincipal + "\n, inventario="
+				+ inventario + "\n, raza=" + raza + "\n, habilidades=" + habilidades + "\n, maniobrasPersonaje="
+				+ maniobrasPersonaje + "\n, salvaciones=" + salvaciones + "\n, idiomas=" + idiomas + "\n, velocidad="
+				+ velocidad + "\n, nivelPersonaje=" + nivelPersonaje + "\n, puntosDeGolpeActuales=" + puntosDeGolpeActuales
+				+ "\n, puntosDeGolpeMaximos=" + puntosDeGolpeMaximos + "]";
+	}
+	
+	
 
 }

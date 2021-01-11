@@ -219,11 +219,11 @@ public class BibliotecaArmas {
 				Arma armaEncontrada = buscarArma(nombre);
 				//TODO cobrar el precio del arma
 				 if(armaEncontrada instanceof ArmaArrojadiza) {
-						pj.getInventarioPersonaje().anadirObjeto(new ArmaArrojadiza((ArmaArrojadiza) armaEncontrada));
+						pj.getInventario().anadirObjeto(new ArmaArrojadiza((ArmaArrojadiza) armaEncontrada));
 					} else if(armaEncontrada instanceof ArmaDistancia) {
-						pj.getInventarioPersonaje().anadirObjeto(new ArmaDistancia((ArmaDistancia) armaEncontrada));
+						pj.getInventario().anadirObjeto(new ArmaDistancia((ArmaDistancia) armaEncontrada));
 					} else if(armaEncontrada instanceof Arma){
-						pj.getInventarioPersonaje().anadirObjeto(new Arma(armaEncontrada));
+						pj.getInventario().anadirObjeto(new Arma(armaEncontrada));
 					}
 				
 			} else {

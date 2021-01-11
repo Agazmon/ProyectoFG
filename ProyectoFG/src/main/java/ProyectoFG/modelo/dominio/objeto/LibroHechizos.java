@@ -102,7 +102,7 @@ public class LibroHechizos extends ObjetoInventario {
 		if (hechizoAnadir == null) {
 			throw new IllegalArgumentException("No se puede añadir un hechizo nulo al libro de hechizos");
 		} else {
-			if (pj.getHechizosDisponibles().contains(hechizoAnadir)) {
+			if (pj.getHechizos().getHechizosPersonaje().contains(hechizoAnadir)) {
 				throw new IllegalArgumentException("El personaje ya puede lanzar este hechizo.");
 			} else {
 				if (getHechizosLibro().contains(hechizoAnadir)) {

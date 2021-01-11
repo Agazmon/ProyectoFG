@@ -159,4 +159,10 @@ public class Salvaciones {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "Salvaciones [listaSalvaciones=" + listaSalvaciones + "]";
+	}
+	
+
 }

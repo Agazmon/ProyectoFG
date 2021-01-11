@@ -60,31 +60,31 @@ public class DoteRequisitoAtributo extends Dote {
 		case LANZADOR_RITUAL_BARDO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getInventarioPersonaje().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
+			pj.getInventario().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
 					new Moneda(TipoMoneda.MONEDA_COBRE, 0), TipoLibro.LANZADOR_RITUAL, TipoClase.BARDO));
 			break;
 		case LANZADOR_RITUAL_BRUJO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getInventarioPersonaje().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
+			pj.getInventario().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
 					new Moneda(TipoMoneda.MONEDA_COBRE, 0), TipoLibro.LANZADOR_RITUAL, TipoClase.BRUJO));
 			break;
 		case LANZADOR_RITUAL_CLERIGO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getInventarioPersonaje().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
+			pj.getInventario().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
 					new Moneda(TipoMoneda.MONEDA_COBRE, 0), TipoLibro.LANZADOR_RITUAL, TipoClase.CLERIGO));
 			break;
 		case LANZADOR_RITUAL_DRUIDA:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getInventarioPersonaje().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
+			pj.getInventario().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
 					new Moneda(TipoMoneda.MONEDA_COBRE, 0), TipoLibro.LANZADOR_RITUAL, TipoClase.DRUIDA));
 			break;
 		case LANZADOR_RITUAL_HECHICERO:
 			pj.getCompetencias().aumentarMaximoCompetencias(1);
 			pj.getCompetencias().ganarCompetencia(TipoCompetencia.CAPACIDAD_LANZAR_HECHIZOS);
-			pj.getInventarioPersonaje().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
+			pj.getInventario().anadirObjeto(new LibroHechizos("Libro de hechizos", 3, 1,
 					new Moneda(TipoMoneda.MONEDA_COBRE, 0), TipoLibro.LANZADOR_RITUAL, TipoClase.HECHICERO));
 			break;
 		case LANZADOR_RITUAL_MAGO:
@@ -93,7 +93,7 @@ public class DoteRequisitoAtributo extends Dote {
 			LibroHechizos libro = new LibroHechizos("Libro de hechizos", 3, 1, new Moneda(TipoMoneda.MONEDA_COBRE, 0),
 					TipoLibro.LANZADOR_RITUAL, TipoClase.MAGO);
 			libro.aumentarMaximoHechizos(NivelHechizo.NIVEL_1, 2);
-			pj.getInventarioPersonaje().anadirObjeto(libro);
+			pj.getInventario().anadirObjeto(libro);
 			break;
 		// Dotes con requisito de atributo con solo texto
 		case ACECHADOR:

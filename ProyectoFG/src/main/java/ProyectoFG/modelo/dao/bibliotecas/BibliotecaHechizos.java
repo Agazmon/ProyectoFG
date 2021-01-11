@@ -21,12 +21,28 @@ public class BibliotecaHechizos {
 	private static final String patronMonedas = "(\\d+,)*\\d+\\s\\w[gp]";
 
 	public BibliotecaHechizos() throws OperationNotSupportedException {
-		this.bibliotecaHechizos = new ArrayList<>();
+		BibliotecaHechizos.bibliotecaHechizos = new ArrayList<>();
 		obtenerHechizos(establecerConexion());
 	}
 
 	public static List<Hechizo> getListaHechizos() {
 		return bibliotecaHechizos;
+	}
+	
+	public static Hechizo buscar(String nombre) {
+		int id = buscarIdPorNombre(nombre);
+		if(id==-1) {
+			return null;
+		} else {
+			return new Hechizo(bibliotecaHechizos.get(id));
+		}
+	}
+
+	private static int buscarIdPorNombre(String nombre) {
+		for (Hechizo hechizo : bibliotecaHechizos) {
+			if(hechizo.getNombreHechizo().equals(nombre)) return bibliotecaHechizos.indexOf(hechizo);
+		}
+		return -1;
 	}
 
 	private void obtenerHechizos(Connection conexion) throws OperationNotSupportedException {
@@ -166,7 +182,7 @@ public class BibliotecaHechizos {
 			throw new IllegalArgumentException(
 					"No se puede añadir un hechizo que ya existe a la biblioteca de hechizos.");
 		} else {
-			this.bibliotecaHechizos.add(hechizo);
+			BibliotecaHechizos.bibliotecaHechizos.add(hechizo);
 		}
 	}
 

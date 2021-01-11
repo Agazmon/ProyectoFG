@@ -1,7 +1,6 @@
 package ProyectoFG.modelo.dominio.hechizo;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 import ProyectoFG.modelo.dominio.accion.TiempoRecuperacion;
@@ -159,8 +158,12 @@ public class EspacioConjuro {
 
 	@Override
 	public String toString() {
-		return "EspacioConjuro [Nivel del Espacio:" + nivelEspacioHechizo + ", Cantidad de espacios="
-				+ cantidadActualEspacios + "]";
+		return "EspacioConjuro [Espacio=" + nivelEspacioHechizo + ", Cantidad máxima de Espacios="
+				+ cantidadEspaciosHechizo + ", Cantidad restante de espacios=" + cantidadActualEspacios
+				+ ", Quedan por aprender=" + cantidadHechizosParaAprender + ", Se recuperan en="
+				+ tiempoRecuperacion + "]";
 	}
+
+	
 
 }
