@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Book It</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">User</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login or Register</string>
+    <string name="action_sign_in_short">Connect</string>
+    <string name="welcome">Welcome %s</string>
+    <string name="invalid_username">Invalid username</string>
+    <string name="invalid_password">Password has to be at leas 5 characters long</string>
+    <string name="login_failed">Invalid login</string>
+    <string name="title_activity_login">Log in</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="background_login">Paco</string>
+    <string name="logo">Company Logo</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+
+    <!-- MainActivity -->
+    <string name="lastBooking">Last Booking</string>
+    <string name="searchRestaurant">Search for a Booking</string>
+    <string name="bookingTime">Booking time:</string>
+
+
+    <!--Reservas-->
+    <string name="pickHour">Pick an Hour</string>
+    <string name="pickDate">Pick a Date</string>
+    <string name="bookit">BookIt!</string>
+    <string name="peopleCount">How many people will come?</string>
+
+    <!--Ayudas -->
+    <string name="searchHelp">Button to search for a Restaurant by Name</string>
+    <string name="ibLastBooking">Button to see the last Booking made by the user</string>
+    <string name="editUser">Edit the current user.</string>
+    <string name="restaurantName">Placeholder Rest</string>
+
+</resources>

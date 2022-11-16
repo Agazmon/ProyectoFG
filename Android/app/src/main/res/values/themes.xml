@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ProyectoBookIt" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/azulMedio</item>
+        <item name="colorPrimaryVariant">@color/azulClaro</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/naranjaClaro</item>
+        <item name="colorSecondaryVariant">@color/naranjaOscuro</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <!-- Customize your theme here. -->
+        <item name="android:editTextBackground">@color/white</item>
+
+    </style>
+
+    <style name="Theme.ProyectoBookIt.NoActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.ProyectoBookIt.BarraCustom" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/azulClaro</item> // This will be the color of your Actionbar
+        <item name="colorPrimaryDark">@color/azulClaro</item>
+        <item name="colorAccent">@color/naranjaClaro</item>
+        <item name="colorButtonNormal">@color/azulClaro</item>
+    </style>
+
+    <style name="Theme.ProyectoBookIt.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/azulMedio</item>
+        <item name="colorPrimaryVariant">@color/azulClaro</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/naranjaClaro</item>
+        <item name="colorSecondaryVariant">@color/naranjaOscuro</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <!-- Customize your theme here. -->
+        <item name="android:editTextBackground">@color/white</item>
+    </style>
+    <style name="Theme.ProyectoBookIt.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+    </style>
+</resources>
